@@ -311,81 +311,109 @@ A list of the designated University employees who, as counselors, confidential a
 
 ### Schedule (subject to change)
 
-* Week 1 [01/16 (lecture), 01/18 (lab)]
-  + First day of class on 01/16. We will discuss the course overview, syllabus, and Git/GitHub
+* Week 1 [01/20 - 01/24] 
+  + 01/21: lecture 
+  + 01/23: lab
+  + First day of class on 01/16. We will discuss an overview for the course, the syllabus, Git/GitHub, and some basics about baseball analytics
   + **Reading**: course slides and setup.md
   + **Reading**: CH 1 and 2 in Analyzing Baseball Data with R (data sets and data wrangling)
-  + **Lab 1** assigned this week, due on 02/02 at 11:59 pm
+  + **Lab 1** assigned this week, due on 02/07 at 11:59 PM
 
-* Week 2 [01/23 (lecture), 01/25 (speaker)]
+* Week 2 [01/27 - 01/31]
+  + 01/28: speaker/lab 
+  + 01/30: lecture 
   + **Reading**: course slides
   + **Reading**: CH 1 and 2 in Analyzing Baseball Data with R (data sets and data wrangling)
   + **Reading**: [A Statistical Look at Roger Clemens’ Pitching Career](https://repository.upenn.edu/cgi/viewcontent.cgi?article=1044&context=statistics_papers)
-  + **Speaker**: Ehsan Bokhari on Thursday, 01/25.
+  + **Speaker**: Ehsan Bokhari (Assistant General Manager, Chicago Cubs)
   
-* Week 3 [01/30 (lecture), 02/01 (lab)]
+* Week 3 [02/03 - 02/07] 
+  + 02/04: lecture
+  + 02/06: lab
   + **Reading**: course slides
   + **Reading**: CH 3 in Analyzing Baseball Data with R (common visualization)
   + **Reading**: CH 4: The Relation Between Runs and Wins in Analyzing Baseball Data with R
-  + **Lab 1** due on 02/02 at 11:59 pm
-  + **Lab 2** assigned this week, due on 02/16 at 11:59 pm
+  + **Lab 1** due on 02/07 at 11:59 pm
+  + **Lab 2** assigned this week, due on 02/21 at 11:59 PM
 
-* Week 4 [02/06 (lecture), 02/08 (lab)]
+* Week 4 [02/10 - 02/14]
+  + 02/11: speaker 
+  + 02/13: lecture
   + **Reading**: course slides
   + **Reading**: CH 5: Value of Plays Using Run Expectancy in Analyzing Baseball Data with R
+  + **Speaker**: Matt Koenig (former Director of Baseball Analytics, Chicago White Sox)
 
-* Week 5 [02/13 (speaker), 02/15 (lab)]
-  + **Lab 2** due on 02/16 at 11:59 pm
-  + **Speaker**: Jim Albert on Tuesday, 02/13.
+* Week 5 [02/17 - 02/21]
+  + 02/18: speaker
+  + 02/20: lab
+  + **Lab 2** due on 02/21 at 11:59 PM
+  + **Speaker**: Connor Rosenberg (Sr. Statistician and Data Scientist, Chicago Cubs)
 
-* Week 6 [02/20 (speaker), 02/22 (lecture)]
+* Week 6 [02/24 - 02/28] 
+  + 02/25: lecture
+  + 02/27: lab
   + **Reading**: course slides
   + **Reading**: CH 9: Simulation in Analyzing Baseball Data with R 
-  + **Speaker**: Alan Nathan on Tuesday, 02/20.
-  + **Lab 3** assigned this week, due on 03/08 at 11:59 pm
+  + **Lab 3** assigned this week, due on 03/07 at 11:59 PM
   
-* Week 7 [02/27 (lab), 02/29 (lab)]
+* Week 7 [03/03 - 03/07] 
+  + 03/04: lab
+  + 03/06: lab
+  + **Lab 3** due on 03/07 at 11:59 PM
   
-* Week 8 [03/05 (lecture), 03/07 (lab)]
+* Week 8 [03/10 - 03/14]
+  + 03/11: speaker
+  + 03/13: lecture 
   + **Reading**: course slides
   + **Reading**: CH 12: Batted Ball Data from Statcast in Analyzing Baseball Data with R
-  + **Lab 3** due on 03/08 at 11:59 pm
-  + **Lab 4** assigned this week, due on 04/05 at 11:59 pm
+  + **Lab 4** assigned this week, due on 04/04 at 11:59 pm
+  + **Speaker**: Alan Nathan (Professor Emeritus of Physics, UIUC)
 
 * Week 9   
   + **Spring Break**
   
-* Week 10 [03/19 (all-time draft), 03/21 (lab)]
+* Week 10 [03/24 - 03/28] 
+  + 03/25: lab
+  + 03/27: lecture/lab
   + **Reading**: CH 12: Batted Ball Data from Statcast in Analyzing Baseball Data with R
 
-* Week 11 [03/26 (lecture), 03/28 (lab)]
+* Week 11 [03/31 - 04/04] 
+  + 03/26: lecture 
+  + 03/28: lab
   + **Reading**: course slides
   + **Reading**: CH 12: Batted Ball Data from Statcast in Analyzing Baseball Data with R
+  + **Lab 4** due on 04/04 at 11:59 PM
+  + **Lab 5** assigned this week, due on 04/18 at 11:59 PM 
 
-* Week 12 [04/02 (lab), 04/04 (speaker)]
-  + **Lab 4** due on 04/05 at 11:59 pm
-  + **Lab 5** assigned this week, due on 04/19 at 11:59 pm 
-  + Project proposal assigned this week, due on 04/19 at 11:59 pm
-  + **Speaker**: Julia Warner and Charlie Young on Thursday, 04/04.
+* Week 12 [04/07 - 04/11] 
+  + 04/08: 
+  + 04/10:
+  + Project proposal assigned this week, due on 04/19 at 11:59 PM
+  + **Speaker**: 
 
-* Week 13 [04/09 (speaker), 04/11 (lecture)]
-  + **Speaker**: David Dalpiaz on Tuesday, 04/09.  
+* Week 13 [04/14 - 04/18] 
+  + 04/15: speaker 
+  + 04/17: lecture
+  + **Speaker**: 
   + **Reading**: Introduction to R Shiny
+  + Project proposal due on 04/18 at 11:59 PM
 
-* Week 14 [04/16 (lab), 04/18 (lab)]
+* Week 14 [04/21 - 04/25]
+  + 04/22: lab
+  + 04/24: lab
   + **Lab 5** due on 04/19 at 11:59 pm
-  + Project proposal due on 04/19 at 11:59 pm
 
-* Week 15 [04/23 (lecture), 04/25 (speaker)]
+* Week 15 [04/28 - 05/02] 
+  + 04/29: lecture
+  + 05/01: speaker
   + **Reading**: course slides
   + **Reading**: CH 8: Career Trajectories in Analyzing Baseball Data with R  
-  + **Speaker**: Adrian Burgos Jr. on Thursday, 04/25.
+  + **Speaker**: Adrian Burgos Jr. (Chair of History Department, UIUC)
 
-* Week 16 [04/30 (lab)]
-  + Open house for project discussions
-  + Last day of instruction on 05/01
+* Week 16 [05/05 - 05/09]
+  + 05/06: lab
+  + Last day of instruction on 05/06
 
-
-* Projects due on 05/10 at 11:59 pm.
+* Final exam due on 05/15 at 11:59 PM.
 
 
