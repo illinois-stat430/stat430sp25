@@ -46,11 +46,14 @@ See the lectures directory for course notes and slides. See the labs directory f
 <BR CLEAR=”left” /> 
 <BR CLEAR=”left” /> 
 
-**Course time:** Tuesdays and Thursdays from 12:30pm - 1:50pm
+**Course time:** Tuesdays and Thursdays from 12:30-1:50 PM
 	
-**Course location:** 3025 Campus Instructional Facility
+**Course location:** 2039 Campus Instructional Facility
 
-**Office hours**: TBD
+**Office hours**: Fridays 10-11 AM via Zoom
+
+Link: https://illinois.zoom.us/j/83402269306?pwd=lUncYspQOfVtRTAuCXnOZsQ4mShq1a.1
+Code: 213169
 
 **TA**: TBD
 
@@ -389,7 +392,6 @@ A list of the designated University employees who, as counselors, confidential a
   + 04/08: 
   + 04/10:
   + Project proposal assigned this week, due on 04/19 at 11:59 PM
-  + **Speaker**: 
 
 * Week 13 [04/14 - 04/18] 
   + 04/15: speaker 
@@ -399,9 +401,10 @@ A list of the designated University employees who, as counselors, confidential a
   + Project proposal due on 04/18 at 11:59 PM
 
 * Week 14 [04/21 - 04/25]
-  + 04/22: lab
+  + 04/22: speaker
   + 04/24: lab
   + **Lab 5** due on 04/19 at 11:59 pm
+  + **Speaker**: Jim Albert (Professor Emeritus of Mathematics and Statistics, Bowling Green State University)
 
 * Week 15 [04/28 - 05/02] 
   + 04/29: lecture
