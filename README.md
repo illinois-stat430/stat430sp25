@@ -9,7 +9,7 @@ See the lectures directory for course notes and slides. See the labs directory f
 
 # News
 
- - Welcome to STAT 430!
+ - Welcome to STAT 430! Check out the baseball analytics primer for an introduction to baseball and baseball analytics or for some fun content.
 
 
 ## Good Habits
