@@ -1,0 +1,204 @@
+---
+title: "Introduction to resources and data sets"
+author: "Daniel J. Eck"
+date: ""
+output: beamer_presentation
+urlcolor: blue
+header-includes: 
+ - \usepackage{amsthm}
+ - \usepackage{amsmath}
+ - \usepackage{amsfonts}
+ - \usepackage{amscd}
+ - \usepackage{amssymb}
+ - \usepackage[sectionbib]{natbib}
+ - \usepackage{url}
+ - \usepackage{graphicx,times}
+ - \usepackage{array,fancyhdr,rotating}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Welcome
+
+Welcome to STAT 430: Baseball Analytics! 
+
+\vspace{12pt}
+
+Let's have a fun semester exploring the ability of statistics to quantify winning games and evaluating players.
+
+\vspace{12pt}
+
+These brief lecture slides are meant to introduce data sets used in class and supplement Chapter 1 in your textbook. They will also go over course logistics.
+
+
+
+
+
+## GitHub
+
+GitHub is a a cloud-based service that implements a Git repository hosting system.
+
+\vspace{12pt}
+
+Course materials will be distributed from my GitHub organization which was built using CS's GitHub-repo-creator. Your repo can be created through this link
+\begin{center}
+\url{https://edu.cs.illinois.edu/create-gh-repo/sp25_stat430}
+\end{center}
+
+\vspace{12pt}
+
+See the \texttt{setup.md} file in the **stat430sp25** root directory for details on setting up GitHub in this course.
+
+
+## Software
+
+ - The R Project for Statistical Computing: \url{https://www.r-project.org/}
+
+ - RStudio as an integrated development environment for R: \url{https://www.rstudio.com/}
+
+\vspace{12pt}
+
+Install both R and RStudio and consider creating an [RStudio project](https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects) for better organization.
+
+
+## Data sets used in class
+
+- \texttt{Lahman} package: 
+```{r, eval = FALSE}
+install.packages("Lahman")
+```
+- [Retrosheet](www.retrosheet.org/gamelogs/index.html) data. Appendix A in your textbook provides an R script file for downloading and parsing all the game log files. A possible more convenient approach for obtaining retrosheets is included in this slide deck. Or you can occasionally use the \texttt{retrosheet} package for simple retrosheets:
+```{r, eval = FALSE}
+install.packages("retrosheet")
+```
+<!-- - PITCHf/x data in XML format.  Appendix B in your textbook details the \texttt{xml2} package and other resources for working with XML data in R.  -->
+
+
+## 
+
+- Statcast data obtained from the \texttt{baseballr} package: 
+```{r, eval = FALSE}
+install.packages("baseballr")
+```
+- [baseball_R](https://github.com/beanumber/baseball_R). Coding scripts and data sets that supplement your textbook.
+- Statcast data obtained from the \texttt{bbd} package: 
+```{r, eval = FALSE}
+# install.packages("devtools")
+devtools::install_github("daviddalpiaz/bbd")
+```
+
+The \texttt{bbd} package was created by UIUC CS professor [David Dalpiaz](https://daviddalpiaz.org/). [Here is a link](https://github.com/daviddalpiaz/bbd) to the GitHub repo.
+
+\vspace{12pt}
+
+Statcast and Retrosheet data sets will be provided if past difficulties persist.
+
+
+## 
+
+- Data scraped from [baseball reference](https://www.baseball-reference.com/): 
+ 
+\tiny
+```{r, eval = FALSE}
+bwar_bat = readr::read_csv("https://www.baseball-reference.com/data/war_daily_bat.txt", 
+                           na = "NULL")
+bwar_pit = readr::read_csv("https://www.baseball-reference.com/data/war_daily_pitch.txt", 
+                           na = "NULL")
+```
+
+\normalsize
+- Era-adjusted data sets are accessible in the \texttt{fullhouse} R package:
+```{r, eval = FALSE}
+#install.packages("devtools")
+install_github(repo = "DEck13/fullhouse")
+```
+This is beta version of an R package developed by myself and my students. It contains era-adjusted baseball statistics that appear on [our website](https://eckeraadjustment.web.illinois.edu/). These stats are obtained through an application of what we call a ``Full House Model," a statistical approach presented in a paper that was recently accepted for publication.
+
+## Introduction to Lahman
+
+The \texttt{Lahman} package contains several tables consisting of useful stat. We highlight a few tables below
+
+\vspace{12pt}
+
+```{r}
+#install.packages("Lahman") 
+library(Lahman)
+data(Batting)
+data(Pitching)
+data(Fielding)
+data(Teams)
+```
+
+
+## Lahman Batting table
+
+\tiny
+```{r}
+head(Batting)
+```
+
+
+## Lahman Pitching table
+
+\tiny
+```{r}
+head(Pitching)
+```
+
+
+## Lahman Fielding table
+
+\tiny
+```{r}
+head(Fielding)
+```
+
+
+## Lahman Teams table
+
+\tiny
+```{r}
+head(Teams, 3)
+```
+
+
+## Retrosheets
+
+There is a lot of box score information contained in a retrosheet. 
+
+
+Basic retrosheets can be obtained from the \texttt{retrosheet} package (the following code chunk has \texttt{eval = FALSE} because the retrosheet will not fit on a single slide).
+
+\vspace{12pt}
+
+```{r, eval = FALSE}
+library(retrosheet)
+getRetrosheet(type = "game", year = 2012)
+```
+
+
+##
+
+More comprehensive retrosheets can be obtained from the \texttt{baseballr} package (the following code chunk has \texttt{eval = FALSE} because the retrosheet will take awhile to load and will be stored locally).
+
+\vspace{12pt}
+
+\tiny
+```{r, eval = FALSE}
+library(baseballr)
+retrosheet_data(path_to_directory = "~/Desktop/baseball_course/retrosheet", 
+                years_to_acquire = 1998)
+```
+
+\normalsize
+Obtaining retrosheets via \texttt{baseballr} requires some work outlined by Bill Petti [here](https://billpetti.github.io/2019-08-10-build-retrosheet-event-roster-database-rstats-baseballr/). 
+
+The steps in the hyperlink above require one to first download and install files from [the Chadwick Bureau](https://github.com/chadwickbureau/chadwick/releases).
+
+Follow the instructions in the INSTALL file in the downloaded Chadwick tarball (this course used \texttt{chadwick-0.9.5}).
+
+
+
+
