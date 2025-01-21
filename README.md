@@ -33,7 +33,7 @@ See the lectures directory for course notes and slides. See the labs directory f
 
 ### Greetings
 
-<img src="https://stat.illinois.edu/sites/default/files/styles/directory_profile/public/profile-photos/dje13.png.jpg?itok=j2rsX2F_" 
+<img src="https://stat.illinois.edu/sites/default/files/styles/directory_profile/public/profile-photos/dje13.png.jpg?itok=47ODgnc8" 
      width="150" 
      height="150"
      hspace="25"
@@ -123,9 +123,9 @@ Upon successful completion of this course students will be able to conduct metho
 
 | category | notes | points
 | :-- | :---- | :---- |
-| Attendance | 5 points each course; 3 free misses  | 130 points
+| Attendance | 5 points each course; 4 free misses  | 125 points
 | Labs | 100 points each | 500 points
-| Final Project | 50 points for approved project; 70 points for presentation (recorded summary); 250 for project materials and writeup | 370 points
+| Final Project | 50 points for approved project; 75 points for presentation (recorded summary); 250 for project materials and writeup | 375 points
 | total | | 1000 points
 
 
@@ -144,7 +144,7 @@ and so on
 
 #### Attendance and Course Content
 
-Attendance will be a course requirement. There will be 29 lectures and you will receive 5 points for each lecture you attend, up to 130 points. Thus you are allowed to miss up to 3 lectures with no penalty.  There will be a signup sheet that is distributed at the beginning of class, you need to sign your name to verify your presence in class. Let your instructor know in advance if you cannot attend any class. 
+Attendance will be a course requirement. There will be 29 lectures and you will receive 5 points for each lecture you attend, up to 125 points. Thus you are allowed to miss up to 4 lectures with no penalty.  There will be a signup sheet that is distributed at the beginning of class, you need to sign your name to verify your presence in class. Let your instructor know in advance if you cannot attend any class. Everyone on the course roster will receive attendance points for the first day of class. 
 
 
 #### Labs
