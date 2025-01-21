@@ -30,7 +30,7 @@ knitr::opts_chunk$set(echo = TRUE)
  - Provide a plot for career trajectories for one batting and one pitching statistic of your choice. These are two separate graphics, one for the batters and one for the pitchers. The graphics that you produce should display the trajectories of the 3 batters and the 3 pitchers. Provide interesting commentary on your graphic.
 
 
-**Question 3** Problem 2 on page 28 of Analyzing Baseball Data with R
+**Question 3** Exercise 1.2 in the online version of Analyzing Baseball Data with R. Exercise 2 on page 27 of the textbook.
  
-**Question 4** Problem 3 on page 29 of Analyzing Baseball Data with R 
+**Question 4** Exercise 1.3 in the online version of Analyzing Baseball Data with R. Exercise 3 on page 27 of the textbook.
 

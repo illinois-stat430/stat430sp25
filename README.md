@@ -72,7 +72,7 @@ My course website is a GitHub repository. You can click  [here](https://github.c
 
 ### Course Materials
 
-The course materials will largely consist of instructor notes, papers, articles, and software. The course will also use the textbook **[Analyzing Baseball Data with R](https://www.routledge.com/Analyzing-Baseball-Data-with-R-Second-Edition/Marchi-Albert-Baumer/p/book/9780815353515)** (second edition)
+The course materials will largely consist of instructor notes, papers, articles, and software. The course will also use the textbook **[Analyzing Baseball Data with R](https://beanumber.github.io/abdwr3e/)** (third edition)
 
 #### Papers, Articles, and Instructor Notes
 
