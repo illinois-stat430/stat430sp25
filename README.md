@@ -53,11 +53,18 @@ See the lectures directory for course notes and slides. See the labs directory f
 **Office hours**: Fridays 10-11 AM via Zoom
 
 Link: https://illinois.zoom.us/j/83402269306?pwd=lUncYspQOfVtRTAuCXnOZsQ4mShq1a.1
+
 Code: 213169
 
-**TA**: TBD
+**TA**: Zhaohao Su
 
-**TA Office hours**: TBD
+**TA Office hours**: Fridays 3-5 PM
+
+Link: https://illinois.zoom.us/j/84551172922?pwd=yLEaXktqjykB5RGhRcOOHaQ6eAKsWC.1
+
+ID: 845 5117 2922
+
+Code: 641435
 
 **Course website**: https://github.com/illinois-stat430/stat430sp25
 
