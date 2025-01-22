@@ -56,15 +56,15 @@ Link: https://illinois.zoom.us/j/83402269306?pwd=lUncYspQOfVtRTAuCXnOZsQ4mShq1a.
 
 Code: 213169
 
-**TA**: Zhaohao Su
+**TA**: **Zhaohao Su**
 
 **TA Office hours**: Fridays 3-5 PM
 
 Link: https://illinois.zoom.us/j/84551172922?pwd=yLEaXktqjykB5RGhRcOOHaQ6eAKsWC.1
 
-ID: 845 5117 2922
+Meeting ID: 845 5117 2922
 
-Code: 641435
+Password: 641435
 
 **Course website**: https://github.com/illinois-stat430/stat430sp25
 
