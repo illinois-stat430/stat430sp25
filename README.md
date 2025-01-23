@@ -396,9 +396,10 @@ A list of the designated University employees who, as counselors, confidential a
   + **Lab 5** assigned this week, due on 04/18 at 11:59 PM 
 
 * Week 12 [04/07 - 04/11] 
-  + 04/08: 
+  + 04/08: speaker 
   + 04/10:
   + Project proposal assigned this week, due on 04/19 at 11:59 PM
+  + **Speaker**: Jack Banks (Performance Science Analyst, New York Yankees; former STAT 430 student)
 
 * Week 13 [04/14 - 04/18] 
   + 04/15: speaker 
