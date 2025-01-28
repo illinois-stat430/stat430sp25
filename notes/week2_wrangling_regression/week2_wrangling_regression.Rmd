@@ -1,0 +1,349 @@
+---
+title: "Data manipulations and linear regression"
+author: "Daniel J. Eck"
+date: ""
+output: beamer_presentation
+urlcolor: blue
+header-includes: 
+ - \usepackage{amsthm}
+ - \usepackage{amsmath}
+ - \usepackage{amsfonts}
+ - \usepackage{amscd}
+ - \usepackage{amssymb}
+ - \usepackage[sectionbib]{natbib}
+ - \usepackage{url}
+ - \usepackage{graphicx,times}
+ - \usepackage{array,fancyhdr,rotating}
+---
+
+\newcommand{\R}{\mathbb{R}}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Background
+
+This lecture is meant to supplement Chapter 2 in your textbook.
+
+We present a brief overview of linear regression.
+
+
+## The \texttt{dplyr} package within \texttt{tidyverse}
+
+\texttt{dplyr} provides comprehensive tools for data manipulations (or wrangling). The main "verbs" are: 
+
+  - \texttt{select()}: choose from a subset of the columns
+  
+  - \texttt{filter()}: choose a subset of the rows based on logical criteria
+  
+  - \texttt{arrange()}: sort the rows based on values of the columns.
+  
+  - \texttt{mutate()}: add or modify the definitions of the column, and create columns that are functions of existing columns.
+  
+  - \texttt{summarize()}: collapse a data frame down to a single row (per group) by aggregating vectors into a single value. Often used in conjunction with \texttt{group\_by()}
+
+ - \texttt{left\_join()}: add columns from one data set to another, matching observations based on keys.
+
+
+## The pipe operator 
+
+The pipe operator \texttt{\%>\%} allows for verbs to be strung in succession so that complicated manipulations can be combined within a single easily digestible sentence.
+
+\vspace{12pt}
+
+```{r, eval=FALSE}
+data %>% 
+	inner_function() %>% 
+	outer_function()
+```
+
+
+## Example: Runs differential regression 
+
+\tiny
+```{r, message = FALSE}
+library(tidyverse)
+library(Lahman)
+data(Teams)
+head(Teams, 3)
+```
+
+
+
+## 
+
+\tiny
+```{r}
+Teams %>% 
+	select(yearID, franchID, W, L, G, AB, H, X2B, X3B, HR, BB, HBP, SF, 
+				 HA, HRA, BBA, SOA, IPouts, FP, R, RA) %>% 
+	filter(yearID >= 1900) %>%
+	replace_na(list(HBP = 0, SF = 0)) %>% 
+	mutate(RD = (R - RA) / G) %>% 
+	arrange(desc(RD)) %>% 
+	head(10)
+```
+
+
+
+## 
+
+\tiny
+```{r}
+dat = Teams %>% 
+	select(yearID, franchID, W, L, G, AB, H, X2B, X3B, HR, BB, HBP, SF, 
+				 HA, HRA, BBA, SOA, IPouts, FP, R, RA) %>% 
+	filter(yearID >= 1900) %>%
+	replace_na(list(HBP = 0, SF = 0)) %>% 
+	mutate(RD = (R - RA) / G) %>% 
+	mutate(OBP = (H + BB + HBP)/(AB + BB + HBP + SF)) %>%  
+	mutate(SLG = (H + X2B + 2*X3B + 3*HR)/AB) %>% 
+	mutate(OPS = OBP + SLG) %>% 
+	mutate(WHIP = 3*(HA + BBA)/IPouts)
+head(dat, 3)
+```
+
+
+##
+
+**Note**: other packages may contain functions with the same name as those in \texttt{dplyr}. For example, the \texttt{MASS} package also contains a \texttt{select} function. 
+
+In the event that you have both \texttt{dplyr} and \texttt{MASS} loaded in an R session, you can access \texttt{dplyr}'s \texttt{select} function using \texttt{dplyr::select}
+
+\vspace{12pt}
+
+\tiny
+```{r}
+dat = Teams %>% 
+	dplyr::select(yearID, franchID, W, L, G, AB, H, X2B, X3B, HR, BB, HBP, SF, 
+				 HA, HRA, BBA, SOA, IPouts, FP, R, RA) %>% 
+	filter(yearID >= 1900) %>%
+	replace_na(list(HBP = 0, SF = 0)) %>% 
+	mutate(RD = (R - RA) / G, X1B = H - (X2B + X3B + HR)) %>% 
+	mutate(OBP = (H + BB + HBP)/(AB + BB + HBP + SF)) %>%  
+	mutate(SLG = (X1B + 2*X2B + 3*X3B + 4*HR)/AB) %>% 
+	mutate(OPS = OBP + SLG) %>% 
+	mutate(WHIP = 3*(HA + BBA)/IPouts) %>% 
+	mutate(FIP = 3*(13*HRA + 3*BBA - 2*SOA)/IPouts)
+```
+
+
+## 
+
+Baseball is a game of offense, pitching, and defense. Let's see how well runs differential per game is explained by: 
+
+- [OPS](https://en.wikipedia.org/wiki/On-base_plus_slugging): on base percentage plus slugging percentage 
+- [WHIP](https://en.wikipedia.org/wiki/Walks_plus_hits_per_inning_pitched): walks and hits allowed divided by innings pitched
+- [FP](https://en.wikipedia.org/wiki/Fielding_percentage): fielding percentage
+
+using a linear regression model 
+
+\vspace{12pt}
+
+```{r}
+m = lm(RD ~ OPS + WHIP + FP, data = dat)
+```
+
+
+## Regression review
+
+Regression model:
+$$
+  y = \beta_1x_1 + \dots + \beta_{p}x_p + \varepsilon; \qquad \varepsilon \sim N(0, \sigma^2),
+$$
+where we usually specify a model intercept by setting $x_1 = 1$.
+
+Can also write in vector notation:
+$$
+  y = \textbf{x}'\beta + \varepsilon; \qquad \varepsilon \sim N(0, \sigma^2),
+$$
+where $\textbf{x}, \beta \in \R^p$.
+
+
+Either way, this model relies on a few assumptions:
+
+- a linear relationship is present
+- errors are independent and identically distributed
+- errors are normally distributed mean 0 and common variance $\sigma^2$
+
+
+## Regression review
+
+Remember that linear regression is about modeling a conditional expectation, the scattering of points is noise. Interest is in 
+$$
+  E(y|\textbf{x}) = \textbf{x}'\beta,
+$$
+where it is important to choose the variables comprising $\textbf{x}$ and to be able to defend those choices.
+
+
+
+## 
+
+Yes, baseball IS a game of offense, pitching, and defense.
+
+\vspace{12pt}
+
+\tiny
+```{r}
+summary(m)
+```
+
+
+
+## 
+
+Linearity holds.
+
+\tiny
+```{r, cache=TRUE}
+pairs(dat %>% select(RD, OPS, WHIP, FP))
+```
+
+
+
+## 
+
+Normality of mean-zero errors with constant variance holds. Although a slightly heavy right tail is observed in the residuals.
+
+\tiny
+```{r}
+par(mfrow = c(2,2))
+plot(m)
+```
+
+
+
+## 
+
+The compiled fractions should be roughly 68\% and 95\% if errors are truly normal with common variance.
+
+\vspace{12pt}
+
+\tiny
+```{r}
+library(broom)
+dat_aug = augment(m, data = dat) 
+dat_aug %>% 
+  mutate(rmse = sqrt((mean(.resid^2)))) %>%
+  summarise(N = n(), 
+            within_1rmse = sum(abs(.resid) < rmse),  
+            within_2rmse = sum(abs(.resid) < 2 * rmse)) %>% 
+  mutate(within_1rmse_pct = within_1rmse / N, 
+         within_2rmse_pct = within_2rmse / N)
+```
+
+
+
+## 
+
+We will suppose that independence holds, or that any violations of this assumption that may be present in this data do not materially effect our overall conclusions.
+
+
+
+## 
+
+A saturated model (one parameter per observation) does not fit the data better than our model with three variables and an intercept.
+
+\vspace{12pt}
+
+\tiny
+```{r}
+# likelihood ratio test of fitted model vs a saturated model
+m_glm = glm(RD ~ OPS + WHIP + FP, data = dat)
+pchisq(m_glm$deviance, m_glm$df.residual, lower = FALSE)
+```
+
+\normalsize
+Thus we have a well-fitting simple and useful model that provides satisfactory dimension reduction.
+
+
+
+## 
+
+Investigate large residuals ($y - \hat{y}$)
+
+\vspace{12pt}
+
+\tiny
+```{r, warning=FALSE}
+dat_aug %>% filter(abs(.resid) >= 1) %>% 
+	select(yearID, franchID, W, RD, OPS, WHIP, FP, .resid, .fitted) %>% 
+	mutate(across(4:9, round, 3)) %>% 
+	arrange(desc(.resid))
+```
+
+
+
+## 
+
+Investigate large fitted values
+
+\vspace{12pt}
+
+\tiny
+```{r}
+dat_aug %>% filter(.fitted >= 2) %>% 
+	select(yearID, franchID, W, RD, OPS, WHIP, FP, .resid, .fitted)
+```
+
+
+
+## 
+
+A closer look at problems with fit
+
+\vspace{12pt}
+
+\tiny
+```{r}
+qqnorm(resid(m)); qqline(resid(m))
+abline(a=0.5, b=0, lty = 2, col = "red")
+```
+
+
+
+## 
+
+A closer look at problems with fit
+ 
+\vspace{12pt}
+ 
+\tiny
+```{r}
+plot(table(dat_aug %>% filter(abs(.resid) >= 0.5) %>% 
+  pull(yearID)), ylab = "number of model under counts")
+```
+
+
+
+## 
+
+League conditions change over time
+
+```{r, echo = FALSE}
+avg_stat = read.csv("avg_stat.csv")[, -1]
+
+
+plot.new()
+plot.window(xlim = c(1900,2021), ylim = c(0, 1.75))
+rect(xleft=1901, ybottom=0, xright=1908, ytop=1.75, col = "gray")
+rect(xleft=1935, ybottom=0, xright=1955, ytop=1.75, col = "gray")
+rect(xleft=2015, ybottom=0, xright=2021, ytop=1.75, col = "gray")
+text(x = 1982, y = 1.42, labels = "WHIP", col = "orange")
+text(x = 1982, y = 1.02, labels = "FP", col = "blue")
+text(x = 1982, y = 0.77, labels = "OPS", col = "black")
+text(x = 1982, y = 0.24, labels = "scaled SD of RD", col = rgb(0.2,0,0,alpha=0.3))
+lines(avg_stat[,1],avg_stat[, 2], lwd = 2)
+abline(a = mean(avg_stat[, 2]), b = 0, lty = 2)
+lines(avg_stat[,1],avg_stat[, 3], col = "orange", lwd = 2)
+abline(a = mean(avg_stat[, 3]), b = 0, col = "orange", lty = 2)
+lines(avg_stat[,1],avg_stat[, 4], col = "blue", lwd = 2)
+abline(a = mean(avg_stat[, 4]), b = 0, col = "blue", lty = 2)
+lines(avg_stat[,1],avg_stat[, 5]/4, col = rgb(0.2,0,0,alpha=0.3), lwd = 1, lty = 1)
+abline(a = mean(avg_stat[, 5])/4, b = 0, col = rgb(0.2,0,0,alpha=0.3), lty = 2)
+axis(1)
+axis(2)
+```
+

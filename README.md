@@ -9,6 +9,12 @@ See the lectures directory for course notes and slides. See the labs directory f
 
 # News
 
+ - Ehsan Bokhari (Assistant General Manager, Chicago Cubs) will speak in class on 01/28
+
+ - We will have a casual lecture after Ehsan's visit.
+
+ - 01/30 class will now be a coding demonstration.
+
  - Welcome to STAT 430! Check out the baseball analytics primer for an introduction to baseball and baseball analytics or for some fun content.
 
 
@@ -331,7 +337,7 @@ A list of the designated University employees who, as counselors, confidential a
 
 * Week 2 [01/27 - 01/31]
   + 01/28: speaker/lecture 
-  + 01/30: lab
+  + 01/30: coding lecture
   + **Reading**: course slides
   + **Reading**: CH 1 and 2 in Analyzing Baseball Data with R (data sets and data wrangling)
   + **Reading**: [A Statistical Look at Roger Clemens’ Pitching Career](https://repository.upenn.edu/cgi/viewcontent.cgi?article=1044&context=statistics_papers)
