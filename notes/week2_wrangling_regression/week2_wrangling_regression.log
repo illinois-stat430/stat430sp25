@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.11.7)  28 JAN 2025 09:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.11.7)  30 JAN 2025 12:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1225,7 +1225,7 @@ nts/type1/urw/courier/ucrro8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/typ
 e1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/
 helvetic/uhvr8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/helveti
 c/uhvro8a.pfb>
-Output written on week2_wrangling_regression.pdf (23 pages, 2643137 bytes).
+Output written on week2_wrangling_regression.pdf (23 pages, 2643125 bytes).
 PDF statistics:
  280 PDF objects out of 1000 (max. 8388607)
  209 compressed objects within 3 object streams

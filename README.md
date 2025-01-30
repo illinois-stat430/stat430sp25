@@ -11,9 +11,7 @@ See the lectures directory for course notes and slides. See the labs directory f
 
  - Ehsan Bokhari (Assistant General Manager, Chicago Cubs) will speak in class on 01/28
 
- - We will have a casual lecture after Ehsan's visit.
-
- - 01/30 class will now be a coding demonstration.
+ - Coding demo posted.
 
  - Welcome to STAT 430! Check out the baseball analytics primer for an introduction to baseball and baseball analytics or for some fun content.
 
