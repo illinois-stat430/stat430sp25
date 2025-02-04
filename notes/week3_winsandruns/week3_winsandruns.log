@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.11.7)  4 FEB 2025 05:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.11.7)  4 FEB 2025 10:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1243,7 +1243,7 @@ Package textcomp Info: Symbol \textasciigrave not provided by
 Here is how much of TeX's memory you used:
  26206 strings out of 478268
  501601 string characters out of 5846347
- 807215 words of memory out of 5000000
+ 808216 words of memory out of 5000000
  43649 multiletter control sequences out of 15000+600000
  502607 words of font info for 112 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1262,7 +1262,7 @@ ublic/cm-super/sftt0800.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw
 .pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></
 usr/local/texlive/2022/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/loc
 al/texlive/2022/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on week3_winsandruns.pdf (24 pages, 2378834 bytes).
+Output written on week3_winsandruns.pdf (24 pages, 2378766 bytes).
 PDF statistics:
  288 PDF objects out of 1000 (max. 8388607)
  215 compressed objects within 3 object streams

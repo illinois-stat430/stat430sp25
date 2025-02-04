@@ -95,12 +95,12 @@ The line of best fit includes the point $(\bar{x}, \bar{y})$.
 
 Now, in one season, we have 
 $$
-  \bar{x} = \frac{1}{n} \sum_{i=1}^n \frac{\text{R}_i - \text{RA}_i}{W + L} = 0.
+  \bar{x} = \frac{1}{n} \sum_{i=1}^n \frac{\text{R}_i - \text{RA}_i}{G} = 0.
 $$  
 And when each team has the same number of decisions we have that 
 $$
   \bar{y} = \frac{1}{n}\sum_{i=1}^n \text{WP}_i 
-  = \frac{1}{n}\sum_{i=1}^n \frac{W_i}{W_i + L_i} 
+  = \frac{1}{n}\sum_{i=1}^n \frac{W_i}{G} 
   = \frac{\bar{W}}{G} = 0.5.
 $$
 
@@ -211,7 +211,7 @@ plot(m2)
 
 ## 
 
-The formula is very powerful and it explains expected wins very well!
+The formula is very powerful and it explains wins very well!
 
 \vspace{12pt}
 
