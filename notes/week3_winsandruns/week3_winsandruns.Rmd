@@ -1,0 +1,461 @@
+---
+title: "The relation between runs and wins"
+author: "Daniel J. Eck"
+date: ""
+output: beamer_presentation
+urlcolor: blue
+header-includes: 
+ - \usepackage{amsthm}
+ - \usepackage{amsmath}
+ - \usepackage{amsfonts}
+ - \usepackage{amscd}
+ - \usepackage{amssymb}
+ - \usepackage[sectionbib]{natbib}
+ - \usepackage{url}
+ - \usepackage{graphicx,times}
+ - \usepackage{array,fancyhdr,rotating}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+## Background
+
+This lecture is meant to supplement Chapter 4 in your textbook.
+
+We already performed an analysis on the relation of runs and components of baseball.
+
+Now we look at the relation between runs and wins.
+
+
+
+## Example: the relation beween runs and wins
+
+We will consider the relationship between runs and wins since 1900.
+
+\vspace{12pt}
+
+\tiny
+```{r, message=FALSE}
+library(tidyverse)
+library(Lahman)
+dat = Teams %>% 
+	filter(yearID >= 1900) %>% 
+	select(teamID, yearID, lgID, W, L, G, R, RA) %>% 
+	mutate(RD = (R - RA)/G, Wpct = W / G)
+head(dat, 5)
+```
+
+
+\vspace{12pt}
+\normalsize
+Here the scaling by outcomes is for interpretability, it will not affect inference.
+
+
+## 
+
+\tiny
+```{r, message=FALSE, out.width="90%", out.height="90%"}
+ggplot(dat, aes(x = RD, y = Wpct)) +  geom_point() + 
+	scale_x_continuous("Run differential") + 
+	scale_y_continuous("Winning Percentage") + 
+        geom_smooth(method = "lm", se = FALSE, color = "blue") + 
+  theme_minimal()
+```
+
+
+
+## 
+
+Winning percentage is well explained by run differential
+
+\vspace{12pt}
+
+\tiny
+```{r}
+m = lm(Wpct ~ RD, data = dat)
+summary(m)
+```
+
+
+##
+
+The intercept is basically equal to 0.5! 
+
+\vspace{1cm}
+
+Why? 
+
+
+##
+The line of best fit includes the point $(\bar{x}, \bar{y})$. 
+
+Now, in one season, we have 
+$$
+  \bar{x} = \frac{1}{n} \sum_{i=1}^n \frac{\text{R}_i - \text{RA}_i}{W + L} = 0.
+$$  
+And when each team has the same number of decisions we have that 
+$$
+  \bar{y} = \frac{1}{n}\sum_{i=1}^n \text{WP}_i 
+  = \frac{1}{n}\sum_{i=1}^n \frac{W_i}{W_i + L_i} 
+  = \frac{\bar{W}}{G} = 0.5.
+$$
+
+## 
+
+\tiny
+```{r}
+par(mfrow = c(2,2))
+plot(m)
+```
+
+
+
+## 
+
+We can see that some teams exhibited deviations from the trend
+
+\vspace{12pt}
+
+\tiny
+```{r, eval = FALSE}
+library(broom)
+library(ggrepel)
+dat_aug = augment(m, data = dat)
+
+base_plot = ggplot(dat_aug, aes(x = RD, y = .resid)) + 
+        geom_point(alpha = 0.2) + 
+        geom_hline(yintercept = 0, linetype = 3) + 
+        xlab("Run differential") + ylab("Residual")
+
+highlight = dat_aug %>% 
+        arrange(desc(abs(.resid))) %>% 
+        head(10)
+
+base_plot + 
+  geom_point(data = highlight, color = "blue") + 
+  geom_text_repel(data = highlight, color = "blue", 
+                  aes(label = paste(teamID, yearID))) +
+  theme_minimal()
+```
+
+
+## 
+
+\tiny
+```{r, echo = FALSE}
+library(broom)
+library(ggrepel)
+dat_aug = augment(m, data = dat) 
+
+base_plot = ggplot(dat_aug, aes(x = RD, y = .resid)) + 
+        geom_point(alpha = 0.2) + 
+        geom_hline(yintercept = 0, linetype = 3) + 
+        xlab("Run differential") + ylab("Residual")
+
+highlight = dat_aug %>% 
+        arrange(desc(abs(.resid))) %>% 
+        head(10)
+
+base_plot + 
+  geom_point(data = highlight, color = "blue") + 
+  geom_text_repel(data = highlight, color = "blue", 
+                  aes(label = paste(teamID, yearID))) +
+  theme_minimal()
+```
+
+
+<!-- ## Example: the relation beween runs and wins -->
+
+<!-- The compiled fractions should be roughly 68\% and 95\% if errors are truly normal with common variance. -->
+
+<!-- \tiny -->
+<!-- ```{r} -->
+<!-- dat_aug %>%  -->
+<!--   mutate(rmse = sqrt((mean(.resid^2)))) %>% -->
+<!--   summarise(N = n(),  -->
+<!--             within_1rmse = sum(abs(.resid) < rmse),   -->
+<!--             within_2rmse = sum(abs(.resid) < 2 * rmse)) %>%  -->
+<!--   mutate(within_1rmse_pct = within_1rmse / N,  -->
+<!--          within_2rmse_pct = within_2rmse / N) -->
+<!-- ``` -->
+
+
+## Pythagorean formula for winning percentage
+
+Bill James empirically derived the following non-linear formula to estimate winning percentage, called the Pythagorean expectation
+$$
+  \text{W}pct = \frac{R^2}{R^2 + RA^2}
+$$
+\tiny
+```{r}
+dat_aug = dat_aug %>% 
+        mutate(Wpct_pyt = R^2 / (R^2 + RA^2))
+m2 = lm(Wpct ~ 0 +  Wpct_pyt, data = dat_aug)
+summary(m2)
+```
+
+
+## 
+
+\tiny
+```{r}
+par(mfrow = c(2,2))
+plot(m2)
+```
+
+
+
+## 
+
+The formula is very powerful and it explains expected wins very well!
+
+\vspace{12pt}
+
+\tiny
+```{r}
+dat_aug %>% 
+  summarise(rmse = sqrt((mean(.resid^2)))) 
+sqrt(mean(resid(m2)^2))
+dat_aug = dat_aug %>% mutate(residuals_pyt = Wpct - Wpct_pyt)
+dat_aug %>% 
+  summarise(rmse_pyt = sqrt((mean(residuals_pyt^2)))) 
+```
+
+
+
+## 
+
+The nonlinear nature of the equation allow for more realistic prediction in the extremes:
+
+\vspace{12pt}
+
+\tiny
+```{r}
+# RD = 5
+predict(m, newdata = data.frame(RD = 5))
+```
+
+\vspace{5pt}
+
+```{r}
+# RD = 5; team1 scores 6 and allows 1, team2 scores 10 and allows 5
+cand = c((6*162)^2 / ((6*162)^2 + 162^2), 1620^2 / (1620^2 + 810^2))
+predict(m2, newdata = data.frame(Wpct_pyt = cand))
+```
+
+\vspace{5pt}
+
+```{r}
+# theoretical limits for teams with RD >= 0
+predict(m2, newdata = data.frame(Wpct_pyt = c(1,1/2)))
+```
+
+
+## Obtain optimal exponent
+
+Start with the Pythagorean formula with an unknown exponent
+$$
+  \text{W}pct = \frac{W}{W + L} = \frac{R^k}{R^k + RA^k}
+$$
+A bit of algebra yields
+$$
+  \frac{W}{L} = \frac{R^k}{RA^k}
+$$
+Taking logarithms yields
+$$
+  \log\left(\frac{W}{L}\right) = k\log\left(\frac{R}{RA}\right)
+$$
+
+## 
+
+\tiny
+```{r}
+dat_aug = dat_aug %>% 
+  mutate(logWratio = log(W / L), 
+         logRratio = log(R / RA))
+
+pyFit = lm(logWratio ~ 0 + logRratio, data = dat_aug)
+pyFit
+```
+
+
+## 
+
+Nearly perfect relationship
+
+\vspace{12pt}
+
+\tiny
+```{r}
+k = pyFit$coef
+dat_aug = dat_aug %>% 
+  mutate(Wpct_pytk = R^k/(R^k + RA^k))
+m3 = lm(Wpct ~ 0 + Wpct_pytk, data = dat_aug)
+dat_aug = dat_aug %>% mutate(residuals_pytk = Wpct - Wpct_pytk)
+summary(m3)
+
+sqrt(mean(resid(m3)^2))
+```
+
+
+## 
+
+\tiny
+```{r}
+par(mfrow = c(2,2))
+plot(m3)
+```
+
+
+## Example: 2011 predictions using the Pythagorean formula
+
+The 2011 Boston Red Sox won 90 games and missed the playoffs. They were beaten out by the Rays who won 91 games. However, the Pythagorean formula and run differentials predicted more wins for the Red Sox.
+
+\vspace{12pt}
+
+\tiny
+```{r}
+## Red Sox predictions
+c(162 * predict(m, newdata = data.frame(RD = (875-737)/162)), 
+162 * predict(m2, newdata = data.frame(Wpct_pyt = 875^2/(875^2 + 737^2))),
+162 * predict(m3, newdata = data.frame(Wpct_pytk = 875^k/(875^k + 737^k))))
+
+## Rays predictions
+c(162 * predict(m, newdata = data.frame(RD = (707-614)/162)),
+162 * predict(m2, newdata = data.frame(Wpct_pyt = 707^2/(707^2 + 614^2))),
+162 * predict(m3, newdata = data.frame(Wpct_pytk = 707^k/(707^k + 614^k))))
+
+```
+
+
+## 
+
+The Red Sox had their victories decided by a larger margin than their losses.
+
+\vspace{12pt}
+
+\tiny
+```{r, cache = TRUE, message = FALSE}
+library(retrosheet)
+library(skimr)
+gl2011 = get_retrosheet("game", 2011)
+BOS2011 = gl2011 %>% 
+  filter(HmTm == "BOS" | VisTm == "BOS") %>% 
+  select(VisTm, HmTm, VisRuns, HmRuns) %>% 
+  mutate(ScoreDiff = ifelse(HmTm == "BOS", HmRuns - VisRuns, VisRuns - HmRuns), 
+         W = ScoreDiff > 0)
+
+(BOS2011 %>% group_by(W) %>% skim(ScoreDiff))[, 2:7]
+```
+
+
+## 
+
+Meanwhile, the Rays had their victories decided by a much closer margin than their losses.
+
+\vspace{12pt}
+
+```{r, message=FALSE,echo=FALSE}
+library(retrosheet)
+library(skimr)
+```
+
+
+\tiny
+```{r}
+TBA2011 = gl2011 %>% 
+  filter(HmTm == "TBA" | VisTm == "TBA") %>% 
+  select(VisTm, HmTm, VisRuns, HmRuns) %>% 
+  mutate(ScoreDiff = ifelse(HmTm == "TBA", HmRuns - VisRuns, VisRuns - HmRuns), 
+         W = ScoreDiff > 0)
+
+(TBA2011 %>% group_by(W) %>% skim(ScoreDiff))[, 2:7]
+```
+
+
+## 
+ 
+\tiny
+```{r, eval = FALSE}
+results = gl2011 %>% 
+  select(VisTm, HmTm, VisRuns, HmRuns) %>% 
+  mutate(winner = ifelse(HmRuns > VisRuns, HmTm, VisTm), 
+         diff = abs(VisRuns - HmRuns))
+
+one_run_wins = results %>% 
+  filter(diff == 1) %>% 
+  group_by(winner) %>% 
+  summarise(one_run_w = n())
+
+dat2011 = dat_aug %>% 
+  filter(yearID == 2011) %>% 
+  mutate(teamID = ifelse(teamID == "LAA", "ANA", as.character(teamID))) %>% 
+  inner_join(one_run_wins, by = c("teamID" = "winner"))
+
+ggplot(data = dat2011, aes(x = one_run_w, y = residuals_pyt)) + 
+  geom_point() + geom_text_repel(aes(label = teamID)) + 
+  xlab("One run wins") + ylab("Pythagorean residuals") + 
+  theme_minimal()
+```
+
+
+## 
+
+The figure shows that the Red Sox had a small number of one-run victories and a large negative Pythagorean residual.
+
+ 
+\tiny
+```{r, echo = FALSE, out.width="90%", out.height="90%"}
+results = gl2011 %>% 
+  select(VisTm, HmTm, VisRuns, HmRuns) %>% 
+  mutate(winner = ifelse(HmRuns > VisRuns, HmTm, VisTm), 
+         diff = abs(VisRuns - HmRuns))
+
+one_run_wins = results %>% 
+  filter(diff == 1) %>% 
+  group_by(winner) %>% 
+  summarise(one_run_w = n())
+
+dat2011 = dat_aug %>% 
+  filter(yearID == 2011) %>% 
+  mutate(teamID = ifelse(teamID == "LAA", "ANA", as.character(teamID))) %>% 
+  inner_join(one_run_wins, by = c("teamID" = "winner"))
+
+ggplot(data = dat2011, aes(x = one_run_w, y = residuals_pytk)) + 
+  geom_point() + 
+  geom_text_repel(aes(label = teamID)) + 
+  xlab("One run wins") + 
+  ylab("Pythagorean residuals") + 
+  theme_minimal()
+```
+
+
+
+## Example: top closer
+
+We can see that since 1990 teams with a top closer outpace their Pythagorean wins by 0.008764 * 162 = 1.42 wins on average.
+
+\vspace{12pt}
+
+\tiny
+```{r}
+top_closers = Pitching %>% 
+  filter(yearID >= 1990, GF >= 50 & ERA <= 2.50) %>% 
+  select(playerID, yearID, teamID)
+
+dat_aug %>% inner_join(top_closers) %>% 
+  pull(residuals_pytk) %>% 
+        summary()
+```
+
+
+<!-- ## awww -->
+
+<!-- \tiny -->
+<!-- ```{r} -->
+<!-- data.frame(dat_aug %>% arrange(desc(residuals_pytk)) %>% filter(yearID >= 1990, teamID == "SFN") %>% select(teamID, yearID, Wpct, Wpct_pytk, residuals_pytk)) -->
+<!-- ``` -->
