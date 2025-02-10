@@ -9,6 +9,8 @@ See the lectures directory for course notes and slides. See the labs directory f
 
 # News
 
+ - Lab2 is now posted. It is due on 02/21 at 11:59 PM. 
+
  - Ehsan Bokhari (Assistant General Manager, Chicago Cubs) will speak in class on 01/28
 
  - Coding demo posted.
@@ -348,7 +350,6 @@ A list of the designated University employees who, as counselors, confidential a
   + **Reading**: CH 3 in Analyzing Baseball Data with R (common visualization)
   + **Reading**: CH 4: The Relation Between Runs and Wins in Analyzing Baseball Data with R
   + **Lab 1** due on 02/07 at 11:59 pm
-  + **Lab 2** assigned this week, due on 02/21 at 11:59 PM
 
 * Week 4 [02/10 - 02/14]
   + 02/11: speaker 
@@ -356,6 +357,7 @@ A list of the designated University employees who, as counselors, confidential a
   + **Reading**: course slides
   + **Reading**: CH 5: Value of Plays Using Run Expectancy in Analyzing Baseball Data with R
   + **Speaker**: Matt Koenig (former Director of Baseball Analytics, Chicago White Sox)
+  + **Lab 2** assigned this week, due on 02/21 at 11:59 PM
 
 * Week 5 [02/17 - 02/21]
   + 02/18: speaker

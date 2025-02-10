@@ -1,0 +1,63 @@
+---
+title: "Lab 2"
+author: ""
+date: "Due on 02/21 at 11:59 pm"
+output: pdf_document
+urlcolor: blue
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+**Question 1** The 2014 and 2015 Royals surprised a lot of people when they seemingly came out of nowhere with back-to-back world series including a title in 2015. In this problem and in the next problem we will investigate aspects of weirdness surrounding these Royals teams. See [this Foolish Baseball video](https://www.youtube.com/watch?v=L0bSAGd6_Zk&ab_channel=FoolishBaseball),  [this Keith Law article](https://www.espn.com/blog/keith-law/insider/post/_/id/137), and [this article about the failure of projection systems](https://www.foxsports.com/stories/other/heres-how-the-kansas-city-royals-blew-past-their-2015-projections) for background. In this problem you will construct a relevant data set for analysis with the ultimate goal of describing just how unique these Royals were. Do the following: 
+
+  - Construct a data frame which includes the following variables from the \texttt{Teams} data frame in the \texttt{Lahman} package: \texttt{yearID}, \texttt{teamID}, \texttt{AB}, \texttt{SO}, \texttt{H}, \texttt{HR}, \texttt{R}, \texttt{RA}, \texttt{W}, and \texttt{L}. Only keep seasons dating back to 1990, and remove the 1994, 1995, and 2020 seasons. 
+
+  - Run the code below to scrape data from baseball reference, and only keep seasons dating back to 1990, and remove the 1994, 1995, and 2020 seasons. 
+
+```{r, eval = FALSE}  
+bwar_bat = readr::read_csv("https://www.baseball-reference.com/data/war_daily_bat.txt", na = "NULL")
+bwar_pit = readr::read_csv("https://www.baseball-reference.com/data/war_daily_pitch.txt", na = "NULL")  
+```  
+  
+  - Obtain total team defensive WAR \texttt{WAR\_def}, bullpen WAR, and base running runs \texttt{runs\_br} for each year and add these quantities to the data frame that you previously constructed from the \texttt{Teams} data frame. Call these variables, respectively, \texttt{dWAR}, \texttt{penWAR}, \texttt{BRruns}.
+  
+  - The 2014-2015 Royals were known for elite base running, an elite bullpen, and elite defense. They were also known for not striking out and not hitting home runs. Add the following scaled variables separately for each season to the data frame that you constructed in the previous step: 
+    - \texttt{scaledSO = scale(SO/AB)}, 
+    - \texttt{scaledBA = scale(H/AB)}, 
+    - \texttt{scaledABpHR = scale(AB/HR)}, 
+    - \texttt{scaledpenWAR = scale(penWAR)}, 
+    - \texttt{scaleddWAR = scale(dWAR)}, 
+    - \texttt{scaledBRruns = scale(BRruns)}
+
+  - Compute and add winning percentage \texttt{Wpct} to your data frame. Use an equation in your notes and linear regression to compute the optimal $k$ so that \texttt{Wpct} is well-explained by \texttt{Wpytk} = $R^k/(R^k + RA^k)$. Add \texttt{Wpytk} and \texttt{residuals\_pytk = Wpct - Wpytk} to your data frame. 
+
+  - Display the rows of this data frame corresponding to the 2014-2015 Royals seasons.
+
+
+**Question 2** In this problem we will perform analyses that investigate strengths and peculiarities of the 2014-2015 Royals. Do the following:
+
+  - Fit and analyze a regression model of \texttt{residuals\_pytk} on \texttt{penWAR}. Determine how many wins one would expect the Royals to obtain above their Pythagorean expectations on the basis of their bullpen.
+  
+  - Total bullpen WAR is just one aspect of what made the 2014-2015 Royals what they were. We will now use [k-means clustering](https://en.wikipedia.org/wiki/K-means_clustering) implemented via the [kmeans function](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/kmeans) to determine whether or not teams similar to the 2014-2015 Royals beat their Pythagorean expectations. Do the following with the number of clusters ranging from $k = 30,...,50$: 1) run kmeans on a data set containing the six scaled variables that you previously constructed with $k$ centers; 2) add the cluster assignments to the original dataset; 3) extract the average of \texttt{residuals\_pytk} for the clusters containing the 2014 or 2015 Royals after removing the Royals from consideration. When finished, compute the average \texttt{residuals\_pytk} value for the 2014 and 2015 Royals and then multiply this number by 162. This is the number of expected wins above/below their Pythagorean expectations that similar teams produced. Report this value and compare it with the 2014-2015 Royals.
+
+ - Add the \texttt{OPSscale} and \texttt{WHIPscale} variables that you computed in Question 1 of Lab 1 to the data frame. Run a regression with \texttt{Wpct} as the response variable and all eight scaled variables as predictors (you can drop terms if you want to). Does this model over/under estimate the success of the 2014-2015 Royals?
+
+
+**Question 3** Do the following: 
+
+  - Select a period of your choice (at least 20 years) and fit the Pythagorean formula model (after finding the optimal exponent) to the run-differential, win-loss data.
+  
+  - On the basis of your fit in the previous part and the list of managers obtained from Retrosheet, compile a top 10 list of managers who most overperformed their Pythagorean winning percentage and a top 10 list of managers who most underperformed their Pythagorean winning percentage.
+
+
+**Question 4** The first question in Section 1.4.3 of Analyzing Baseball Data with R. Your answer to this question must include the code to obtain the answer. You cannot copy the answer directly from the book.
+  
+
+
+
+
+
