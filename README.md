@@ -9,6 +9,8 @@ See the lectures directory for course notes and slides. See the labs directory f
 
 # News
 
+ - Job opportunity with [Windy City Thunderbolts](https://www.teamworkonline.com/baseball-jobs/frontierleaguejobs/windy-city-thunderbolts/baseball-analytics-internship-2111569). 
+
  - Tuesday, Feb 13 is now a lab session.
 
  - Lab2 is now posted. It is due on 02/21 at 11:59 PM. 
