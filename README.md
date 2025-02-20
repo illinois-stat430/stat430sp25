@@ -9,17 +9,11 @@ See the lectures directory for course notes and slides. See the labs directory f
 
 # News
 
+ - Notes on run expectancy and the value of plays are now posted.
+
  - Job opportunity with [Windy City Thunderbolts](https://www.teamworkonline.com/baseball-jobs/frontierleaguejobs/windy-city-thunderbolts/baseball-analytics-internship-2111569). 
 
- - Tuesday, Feb 13 is now a lab session.
-
  - Lab2 is now posted. It is due on 02/21 at 11:59 PM. 
-
- - Ehsan Bokhari (Assistant General Manager, Chicago Cubs) will speak in class on 01/28
-
- - Coding demo posted.
-
- - Welcome to STAT 430! Check out the baseball analytics primer for an introduction to baseball and baseball analytics or for some fun content.
 
 
 ## Good Habits

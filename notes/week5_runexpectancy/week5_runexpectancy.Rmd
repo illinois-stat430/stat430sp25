@@ -1,0 +1,669 @@
+---
+title: "Value of plays using run expectancy"
+author: "Daniel J. Eck"
+date: ""
+output: beamer_presentation
+urlcolor: blue
+header-includes: 
+ - \usepackage{amsthm}
+ - \usepackage{amsmath}
+ - \usepackage{amsfonts}
+ - \usepackage{amscd}
+ - \usepackage{amssymb}
+ - \usepackage[sectionbib]{natbib}
+ - \usepackage{url}
+ - \usepackage{graphicx,times}
+ - \usepackage{array,fancyhdr,rotating}
+---
+
+
+## Background
+
+This lecture is meant to supplement Chapter 5 in your textbook.
+
+We will now study the value of baseball events.
+
+
+## Introduction to the run expectancy matrix 
+
+The run expectancy matrix is the average number of runs scored for each combination of outs and runners on base. 
+
+There are 8 possible arrangements of runners on the three bases, and the number of possible outs equals 3. Thus there are a total of 24 possible arrangements of outs and runners which form the run expectancy matrix.
+
+The run expectancy matrix establishes a baseline value for baseball events in a context-free environment.
+
+
+## Data
+
+We will calculate the run expectancy matrix. We first load in relevant software packages 
+
+\vspace{12pt}
+
+\tiny
+```{r, message=FALSE}
+library(Lahman)
+library(tidyverse)
+library(retrosheet)
+```
+
+\normalsize
+and then we load in play-by-play data from the 2016 season
+
+\vspace{12pt}
+
+\tiny
+```{r, warning=FALSE, message=FALSE, cache=TRUE}
+fields = read_csv("fields.csv")
+dat2016 = read_csv("all2016.csv", 
+                    col_names = pull(fields, Header), 
+                    na = character())
+```
+
+
+## Data manipulations
+
+We compute a runs scored in the remainder of the inning variable and add it to \texttt{dat2016}.
+
+\vspace{12pt}
+
+\tiny
+```{r}
+dat2016 = dat2016 %>% 
+  mutate(RUNS = AWAY_SCORE_CT + HOME_SCORE_CT, 
+         HALF.INNING = paste(GAME_ID, INN_CT, BAT_HOME_ID), 
+         RUNS.SCORED = (BAT_DEST_ID > 3) + (RUN1_DEST_ID > 3) + 
+                 (RUN2_DEST_ID > 3) + (RUN3_DEST_ID > 3))
+
+half_innings = dat2016 %>% 
+  group_by(HALF.INNING) %>% 
+  summarise(Outs.Inning = sum(EVENT_OUTS_CT), 
+            Runs.Inning = sum(RUNS.SCORED), 
+            Runs.Start = first(RUNS), 
+            MAX.RUNS = Runs.Inning + Runs.Start)
+
+dat2016 = dat2016 %>% 
+  inner_join(half_innings, by = "HALF.INNING") %>% 
+  mutate(RUNS.ROI = MAX.RUNS - RUNS)        
+```
+
+
+## Creating the matrix
+
+Now that the runs scored in the remainder of the inning variable have been computed for each plate appearance, it is straightforward to compute the run expectancy matrix.
+
+We create a \texttt{BASES} variable which indicates the base runner state (eg, 100 corresponds to a runner on first), and a \texttt{STATE} variable which adds the number of outs to \texttt{BASES}.
+
+\vspace{12pt}
+
+\tiny
+```{r}
+dat2016 = 
+  dat2016 %>% mutate(BASES = paste(ifelse(BASE1_RUN_ID != "",1,0), 
+                                 ifelse(BASE2_RUN_ID != "",1,0),
+                                 ifelse(BASE3_RUN_ID != "",1,0), sep = ""), 
+                     STATE = paste(BASES, OUTS_CT))
+```
+
+
+
+## Creating the matrix (continued)
+
+We now trim \texttt{dat2016} to only include plays in which the state of the game changed and a half inning reached 3 outs.
+ 
+\vspace{12pt} 
+ 
+\tiny
+```{r}
+dat2016 = dat2016 %>% 
+  mutate(NRUNNER1 = as.numeric(RUN1_DEST_ID == 1 | BAT_DEST_ID == 1), 
+         NRUNNER2 = as.numeric(RUN1_DEST_ID == 2 | RUN2_DEST_ID == 2 | BAT_DEST_ID == 2), 
+         NRUNNER3 = as.numeric(RUN1_DEST_ID == 3 | RUN2_DEST_ID == 3 | 
+           RUN3_DEST_ID == 3 | BAT_DEST_ID == 3), 
+         NOUTS = OUTS_CT + EVENT_OUTS_CT, 
+         NEW.BASES = paste(NRUNNER1, NRUNNER2, NRUNNER3, sep = ""), 
+         NEW.STATE = paste(NEW.BASES, NOUTS)) %>% 
+  filter((STATE != NEW.STATE) | (RUNS.SCORED > 0)) %>% 
+  filter(Outs.Inning == 3)
+```
+
+
+
+## Creating the matrix (continued)
+
+We now create the run expectancy matrix \texttt{RUNS\_out}
+
+\vspace{12pt}
+
+\tiny
+```{r}
+RUNS = dat2016 %>% 
+  group_by(STATE) %>% 
+  summarize(Mean = mean(RUNS.ROI)) %>% 
+  mutate(Outs = substr(STATE, 5, 5)) %>% 
+  arrange(Outs)
+
+RUNS_out = matrix(round(RUNS$Mean, 2), 8, 3)
+dimnames(RUNS_out)[[1]] = c("000","001","010","011",
+                             "100","101","110","111")
+dimnames(RUNS_out)[[2]] = c("0 outs", "1 out", "2 outs")
+RUNS_out
+```
+
+
+
+## Measuring the success of a batting play 
+
+When a player comes to bat with a particular runners out situation, the run expectancy matrix tells us the number of runs a team is expected to score in the remainder of the half inning:
+$$
+  \text{Run Value} = (\text{Runs}_{\text{new state}} - \text{Runs}_{\text{old state}}) + \text{Runs}_{\text{scored on play}}
+$$
+
+
+\tiny
+```{r}
+dat2016 = dat2016 %>% 
+  left_join(select(RUNS, - Outs), by = "STATE") %>% 
+  rename(Runs.State = Mean) %>% 
+  left_join(select(RUNS, -Outs), by = c("NEW.STATE" = "STATE")) %>% 
+  rename(Runs.New.State = Mean) %>% 
+  replace_na(list(Runs.New.State = 0)) %>% 
+  mutate(run_value = Runs.New.State - Runs.State + RUNS.SCORED)
+```
+
+
+
+## Example: Jose Altuve
+
+We will now study Jose Altuve's 2016 season.
+
+The code below isolates the run value for each of Altuve's batting events and displays his first 3 batting events.
+
+\vspace{12pt}
+
+\tiny
+```{r, message=FALSE, warning=FALSE}
+data('People')
+altuve.id = People %>% filter(nameFirst == "Jose", nameLast == "Altuve") %>% pull(retroID)
+# BAT_EVENT_FL == TRUE distinguishes batting events from non batting events like steals
+altuve = dat2016 %>% filter(BAT_ID == altuve.id, 
+                             BAT_EVENT_FL == TRUE)
+altuve %>% select(STATE, NEW.STATE, run_value) %>% 
+  slice(1:3)
+```
+
+
+## 
+
+We can see that Jose Altuve was 13th in total RE24 value.
+
+\vspace{12pt}
+
+\tiny
+```{r}
+dat2016 %>% inner_join(People %>% select(nameFirst, nameLast, retroID), 
+             by = c("BAT_ID" = "retroID")) %>% 
+  filter( BAT_EVENT_FL == TRUE) %>% 
+  group_by(BAT_ID) %>% 
+  summarise(nameFirst = unique(nameFirst), 
+            nameLast = unique(nameLast), 
+            RE24 = sum(run_value)) %>% 
+  arrange(desc(RE24)) %>% as.data.frame() %>% head(20)
+```
+
+
+## 
+
+We can see the number of opportunities Jose Altuve had in each base out state. 
+
+\vspace{12pt}
+
+\tiny
+```{r}
+altuve %>% group_by(STATE) %>% 
+  summarise(N = n(), avg_run_value = mean(run_value), 
+  					total_run_value = sum(run_value), se_run_value = sd(run_value)/ sqrt(N)) %>% 
+	as.data.frame()       
+```
+
+
+
+## 
+
+Cleaner presentation of sample sizes for each out base state: 
+
+\vspace{12pt}
+
+\tiny
+```{r}
+altuve_RE = altuve %>% group_by(STATE) %>% 
+  summarize(N = n(), avg_run_value = mean(run_value)) %>% 
+  mutate(Outs = substr(STATE, 5, 5)) %>% 
+  arrange(Outs) 
+
+altuve_N_mat = matrix(round(altuve_RE$N, 4), 8, 3)
+dimnames(altuve_N_mat)[[1]] = c("000","001","010","011",
+                             "100","101","110","111")
+dimnames(altuve_N_mat)[[2]] = c("0 outs", "1 out", "2 outs")
+altuve_N_mat
+```
+
+
+```{r}
+colSums(altuve_N_mat)
+rowSums(altuve_N_mat)
+```
+
+
+
+## 
+
+Cleaner presentation of run value for each out base state:
+
+\vspace{12pt}
+
+\tiny
+```{r}
+altuve_RE_mat = matrix(round(altuve_RE$avg_run_value, 4), 8, 3)
+dimnames(altuve_RE_mat)[[1]] = c("000","001","010","011",
+                             "100","101","110","111")
+dimnames(altuve_RE_mat)[[2]] = c("0 outs", "1 out", "2 outs")
+
+colMeans(altuve_RE_mat)
+rowMeans(altuve_RE_mat)
+```
+
+
+
+## 
+
+We detect statistically significant differences for Jose Altuve's performance across base out states using an anova test. However, a close look reveals that these differences are not intuitive and our detected statistical significance may be just noise.
+
+\vspace{12pt}
+
+\tiny
+```{r}
+# performance in different states
+summary(aov(run_value ~ -1 + STATE, data = altuve))
+```
+
+
+## 
+
+\tiny
+```{r}
+round(coef(summary(lm(run_value ~ -1 + STATE, data = altuve))), 3)
+```
+
+
+
+
+## 
+
+Two-way anova tests do not reveal statistical significance.
+
+\vspace{12pt}
+
+\tiny
+```{r}
+summary(aov(run_value ~ -1 + BASES + Outs, data = altuve %>% 
+              mutate(Outs = substr(STATE, 5, 5))))
+summary(aov(run_value ~ -1 + BASES + Outs, data = altuve %>% 
+              filter(!(BASES %in% c("111", "011"))) %>% 
+               mutate(Outs = substr(STATE, 5, 5))))
+```
+
+
+
+## 
+
+A dichotomy between RISP and no RISP reveals statistical significance.
+
+\vspace{12pt}
+
+\tiny
+```{r}
+# performance with RISP
+altuve = altuve %>% mutate(RISP = ifelse(!BASES %in% c("100","000"),1,0))
+summary(aov(run_value ~ -1 + RISP + Outs, data = altuve %>% 
+              mutate(Outs = substr(STATE, 5, 5))))
+
+altuve %>% group_by(RISP) %>% summarise(N = n(), avg_run_value = mean(run_value), 
+  					total_run_value = sum(run_value), se_run_value = sd(run_value)/ sqrt(N))
+```
+
+
+
+## 
+
+However, Jose Altuve ranked 75th among roughly 200 full time players in the difference in run value with RISP and with runners not in RISP.
+
+We have mixed results. Can check out [bref for a complete breakdown](https://www.baseball-reference.com/players/split.fcgi?id=altuvjo01&year=2016&t=b)
+
+\vspace{12pt}
+
+\tiny
+```{r}
+dat2016 %>% inner_join(People %>% select(nameFirst, nameLast, retroID), 
+             by = c("BAT_ID" = "retroID")) %>% 
+  filter( BAT_EVENT_FL == TRUE) %>% 
+  mutate(RISP = ifelse(!BASES %in% c("100","000"),1,0)) %>% 
+  group_by(BAT_ID) %>% 
+  summarise(nameFirst = unique(nameFirst), 
+            nameLast = unique(nameLast), 
+            N = n(),
+            diff = mean(run_value[which(RISP == 1)]) - mean(run_value[which(RISP == 0)])) %>%
+  filter(N >= 400) %>% arrange(desc(diff)) %>% slice(73:77) 
+```
+
+
+
+
+
+## Altuve's situational OPS
+
+The calculation on Altuve's situational OPS will involve knowledge of the retrosheet event codes. These codes are included as a comment in this code chunk in the accompanying .Rmd file 
+
+<!--           Code Meaning -->
+
+<!--           0    Unknown event -->
+<!--           1    No event -->
+<!--           2    Generic out -->
+<!--           3    Strikeout -->
+<!--           4    Stolen base -->
+<!--           5    Defensive indifference -->
+<!--           6    Caught stealing -->
+<!--           7    Pickoff error -->
+<!--           8    Pickoff -->
+<!--           9    Wild pitch -->
+<!--           10   Passed ball -->
+<!--           11   Balk -->
+<!--           12   Other advance -->
+<!--           13   Foul error -->
+<!--           14   Walk -->
+<!--           15   Intentional walk -->
+<!--           16   Hit by pitch -->
+<!--           17   Interference -->
+<!--           18   Error -->
+<!--           19   Fielder's choice -->
+<!--           20   Single -->
+<!--           21   Double -->
+<!--           22   Triple -->
+<!--           23   Home run -->
+<!--           24   Missing play -->
+
+\vspace{12pt}
+\tiny
+```{r}
+altuve %>% 
+  select(BASES, EVENT_CD, NEW.BASES, NOUTS, Outs.Inning, OUTS_CT) %>% 
+  filter(EVENT_CD %in% c(2,3,14,15,16,18,19,20,21,22,23)) %>% 
+  mutate(RISP = ifelse(!BASES %in% c("100","000"),1,0)) %>% 
+  group_by(RISP) %>% 
+  summarise(n = n(), 
+            AB = n - sum(EVENT_CD == 14) - 
+              sum(EVENT_CD == 15) - 
+              sum(EVENT_CD == 16),
+            H = sum(EVENT_CD %in% 20:23), 
+            OBP_noSF = (H + sum(EVENT_CD %in% 14:16)) / 
+              (AB + sum(EVENT_CD %in% 14:16)),
+            SLG = (sum(EVENT_CD == 20) +  
+              2 * sum(EVENT_CD == 21) + 
+              3 * sum(EVENT_CD == 22) + 
+              4 * sum(EVENT_CD == 23))/AB, 
+            OPS_noSF = OBP_noSF + SLG)
+```
+
+## 
+
+We now compute the situational OPS split (OPS when RISP minus OPS when runners not in scoring position) for every player, and find Altuve's rank by this metric. First, some data transformation.
+
+\vspace{12pt}
+\tiny
+```{r, message = FALSE}
+dat2016_OPS = dat2016 %>% 
+  inner_join(People %>% select(nameFirst, nameLast, retroID), 
+             by = c("BAT_ID" = "retroID")) %>% 
+  filter( BAT_EVENT_FL == TRUE) %>% 
+  mutate(RISP = ifelse(!BASES %in% c("100","000"),1,0)) %>% 
+  group_by(BAT_ID, RISP) %>% 
+  summarise(nameFirst = unique(nameFirst), 
+            nameLast = unique(nameLast), 
+            n = n(), 
+            AB = n - sum(EVENT_CD == 14) - 
+              sum(EVENT_CD == 15) - 
+              sum(EVENT_CD == 16),
+            H = sum(EVENT_CD %in% 20:23), 
+            OBP_noSF = (H + sum(EVENT_CD %in% 14:16)) / 
+              (AB + sum(EVENT_CD %in% 14:16)),
+            SLG = (sum(EVENT_CD == 20) +  
+              2 * sum(EVENT_CD == 21) + 
+              3 * sum(EVENT_CD == 22) + 
+              4 * sum(EVENT_CD == 23))/AB, 
+            OPS_noSF = OBP_noSF + SLG) %>% 
+  filter(n_distinct(RISP) == 2)
+```
+
+##
+
+Jose Altuve's situational OPS split difference ranks 44th (among batters with at least 400 batting events).
+
+\vspace{12pt}
+\tiny
+```{r}
+dat2016_OPS %>%  
+  mutate(OPS_noSF_diff = OPS_noSF[RISP == 1] - OPS_noSF[RISP == 0]) %>% 
+  summarise(nameFirst = unique(nameFirst), 
+            nameLast = unique(nameLast), 
+            n = sum(n), 
+            OPS_noSF_diff = unique(OPS_noSF_diff)) %>% 
+  filter(n >= 400) %>% 
+  arrange(desc(OPS_noSF_diff)) %>% 
+  slice(42:46)
+```
+
+##
+
+\tiny
+```{r}
+ggplot(altuve, aes(BASES, run_value)) + 
+  geom_jitter(width = 0.15, alpha = 0.20) + 
+  geom_hline(yintercept = 0, color = "blue") + 
+  xlab("Runners") + ylab("Run value") + 
+  theme_minimal()
+```
+
+
+
+## Example: All batters
+
+We create a new variable: total starting runs potential \texttt{Runs.Start}. This variable sums the run values of all base-out states at the start of a batter's plate appearance.
+
+\vspace{12pt}
+
+\tiny
+```{r}
+runs = dat2016 %>% 
+  filter(BAT_EVENT_FL == TRUE) %>% 
+  inner_join(People, by = c("BAT_ID" = "retroID")) %>%  
+  group_by(BAT_ID) %>% 
+  summarise(RE24 = sum(run_value), 
+            PA = length(run_value), 
+            Runs.Start = sum(Runs.State), 
+            nameLast = unique(nameLast)) %>% 
+  filter(PA >= 400)
+
+head(runs)
+```
+
+
+
+## 
+
+Batters with larger values of \texttt{Runs.Start} tend to have larger runs contributions. Batters with at least 40 RE24 are labeled.
+
+\vspace{12pt}
+
+\tiny
+```{r, message=FALSE, out.width="85%", out.height="75%"}
+library(ggrepel)
+ggplot(runs, aes(Runs.Start, RE24)) + 
+  geom_point() + geom_smooth() + 
+  geom_hline(yintercept = 0, color = "blue") + 
+  geom_text_repel(data = filter(runs, RE24 >= 40), aes(label = nameLast)) + 
+  theme_minimal()
+```
+
+
+
+## Simple lineup analysis
+
+Managers like to put their best hitters near the middle third of the lineup.
+
+\vspace{12pt}
+
+\tiny
+```{r, eval = FALSE}
+regulars = dat2016 %>% inner_join(runs, by = "BAT_ID")
+positions = regulars %>% group_by(BAT_ID, BAT_LINEUP_ID) %>% 
+  summarise(N = n()) %>% arrange(desc(N)) %>% 
+  mutate(Position = first(BAT_LINEUP_ID))
+runs = runs %>% inner_join(positions, by = "BAT_ID")
+
+ggplot(runs, aes(Runs.Start, RE24, label = Position)) + 
+  geom_text() + 
+  geom_hline(yintercept = 0, color = "blue") + 
+  geom_point(data = filter(runs, BAT_ID == altuve.id), 
+             size = 4, shape = 16, color = "blue") + 
+  theme_minimal()
+```
+
+## 
+
+```{r, echo = FALSE, message=FALSE, warning=FALSE}
+regulars = dat2016 %>% inner_join(runs, by = "BAT_ID")
+positions = regulars %>% group_by(BAT_ID, BAT_LINEUP_ID) %>% 
+  summarise(N = n()) %>% arrange(desc(N)) %>% 
+  mutate(Position = first(BAT_LINEUP_ID))
+runs = runs %>% inner_join(positions, by = "BAT_ID")
+
+ggplot(runs, aes(Runs.Start, RE24, label = Position)) + 
+  geom_text() + 
+  geom_hline(yintercept = 0, color = "blue") + 
+  geom_point(data = filter(runs, BAT_ID == altuve.id), 
+             size = 4, shape = 16, color = "blue") + 
+  theme_minimal()
+```
+
+
+
+## Value of home runs 
+
+\tiny
+```{r}
+## get home runs
+home_runs = dat2016 %>% filter(EVENT_CD == 23)
+
+home_runs_N = home_runs %>% group_by(STATE) %>% 
+  mutate(Outs = substr(STATE, 5, 5)) %>% 
+  arrange(Outs) %>%
+  summarise(Outs = unique(Outs), N = n()) %>% 
+  arrange(Outs)
+
+## frequency table of home runs
+home_runs_N_mat = matrix(round(home_runs_N$N / sum(home_runs_N$N), 3), 8, 3)
+dimnames(home_runs_N_mat)[[1]] = c("000","001","010","011",
+                             "100","101","110","111")
+dimnames(home_runs_N_mat)[[2]] = c("0 outs", "1 out", "2 outs")
+home_runs_N_mat
+
+avg_hr = home_runs %>% summarise(avg_run_value = mean(run_value))
+avg_hr
+```
+
+
+
+## 
+
+\tiny
+```{r, message=FALSE, warning=FALSE}
+ggplot(home_runs, aes(run_value)) + 
+  geom_histogram() + 
+  geom_vline(data = avg_hr, aes(xintercept = avg_run_value), 
+             color = "blue", size = 1.5) + 
+  annotate("text", 1.6, 2000, label = "Mean Run\nValue", color = "blue") + 
+  theme_minimal()
+```
+
+
+
+## Value of base stealing 
+
+\tiny
+```{r}
+stealing = dat2016 %>% filter(EVENT_CD %in% c(4,6))
+stealing %>% group_by(EVENT_CD) %>% summarise(N = n(), 
+  avg_run_value = mean(run_value)) %>% 
+	mutate(pct = N/sum(N))
+```
+
+
+
+##
+
+Histogram of the run values of all steal attempts during the 2016 season.
+
+\vspace{12pt}
+
+\tiny
+```{r, message=FALSE, out.width="85%", out.height="75%"}
+ggplot(stealing, aes(run_value, fill = factor(EVENT_CD))) + 
+	geom_histogram() + 
+	scale_fill_manual(name = "Event", values = c("blue", "grey"), 
+										labels = c("SB", "CS")) + 
+  theme_minimal()
+```
+
+
+## 
+
+We can compute the marginal break-even success rate needed to justify a stolen base attempt across the 2016 season
+$$
+  a * \text{SB}_{\text{avg value}} + (1-a) * \text{CS}_{\text{avg value}} = 0
+$$
+which implies that 
+$$
+  a = -\frac{\text{CS}_{\text{avg value}}}{\text{SB}_{\text{avg value}}  - \text{CS}_{\text{avg value}}}.
+$$
+From a previous slide we compute
+
+\vspace{12pt}
+
+```{r}
+a = 0.416 / ( 0.180 + 0.416)
+a
+```
+
+
+<!-- ```{r} -->
+<!-- stealing %>% group_by(STATE, EVENT_CD) %>%  -->
+<!-- 	summarise(tot = sum(run_value), N = n()) %>%  -->
+<!-- 	mutate(break_pt = -tot[EVENT_CD == 6]/tot[EVENT_CD == 4]) %>%  -->
+<!-- 	pull(break_pt) %>% unique() -->
+
+<!-- split(stealing %>% select(STATE, EVENT_CD, run_value), f = as.factor(stealing$STATE)) -->
+<!-- ``` -->
+
+
+<!-- ```{r} -->
+<!-- stealing %>% group_by(POS2_FLD_ID, EVENT_CD) %>%  -->
+<!-- 	summarise(catcher = unique(POS2_FLD_ID), N = n()) %>%  -->
+<!-- 	mutate(pct = N/sum(N)) %>% filter(EVENT_CD == 4) %>%  -->
+<!-- 	#filter(N >= 10) %>% -->
+<!-- 	filter(catcher == "moliy001") %>% -->
+<!-- 	arrange(pct) -->
+
+<!-- stealing %>% group_by(POS2_FLD_ID) %>%  -->
+<!-- 	summarise(catcher = unique(POS2_FLD_ID), tot = sum(run_value)) %>%  -->
+<!-- 	arrange(tot) -->
+<!-- ``` -->
+
