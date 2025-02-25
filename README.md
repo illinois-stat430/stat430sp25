@@ -9,7 +9,7 @@ See the lectures directory for course notes and slides. See the labs directory f
 
 # News
 
- - Lab2 is now posted. It is due on 03/14 at 11:59 PM.
+ - Lab3 is now posted. It is due on 03/14 at 11:59 PM.
 
  - Simulation notes now posted.
 
