@@ -9,11 +9,12 @@ See the lectures directory for course notes and slides. See the labs directory f
 
 # News
 
- - Notes on run expectancy and the value of plays are now posted.
+ - Lab2 is now posted. It is due on 03/14 at 11:59 PM.
+
+ - Simulation notes now posted.
 
  - Job opportunity with [Windy City Thunderbolts](https://www.teamworkonline.com/baseball-jobs/frontierleaguejobs/windy-city-thunderbolts/baseball-analytics-internship-2111569). 
 
- - Lab2 is now posted. It is due on 02/21 at 11:59 PM. 
 
 
 ## Good Habits
@@ -373,37 +374,36 @@ A list of the designated University employees who, as counselors, confidential a
 * Week 7 [03/03 - 03/07] 
   + 03/04: lab
   + 03/06: lab
-  + **Lab 3** due on 03/07 at 11:59 PM
-  
+ 
 * Week 8 [03/10 - 03/14]
   + 03/11: speaker
   + 03/13: lecture 
-  + **Reading**: course slides
-  + **Reading**: CH 12: Batted Ball Data from Statcast in Analyzing Baseball Data with R
-  + **Lab 4** assigned this week, due on 04/04 at 11:59 pm
   + **Speaker**: Alan Nathan (Professor Emeritus of Physics, UIUC)
+  + **Lab 3** due on 03/14 at 11:59 PM
 
 * Week 9   
   + **Spring Break**
   
 * Week 10 [03/24 - 03/28] 
-  + 03/25: lab
-  + 03/27: lecture/lab
+  + 03/25: lecture/lab
+  + 03/27: lab
+  + **Reading**: course slides
   + **Reading**: CH 12: Batted Ball Data from Statcast in Analyzing Baseball Data with R
+  + **Lab 4** assigned this week, due on 04/12 at 11:59 pm
 
 * Week 11 [03/31 - 04/04] 
   + 03/26: lecture 
   + 03/28: lab
   + **Reading**: course slides
   + **Reading**: CH 12: Batted Ball Data from Statcast in Analyzing Baseball Data with R
-  + **Lab 4** due on 04/04 at 11:59 PM
-  + **Lab 5** assigned this week, due on 04/18 at 11:59 PM 
 
 * Week 12 [04/07 - 04/11] 
   + 04/08: speaker 
   + 04/10:
   + Project proposal assigned this week, due on 04/19 at 11:59 PM
-  + **Speaker**: Jack Banks (Performance Science Analyst, New York Yankees; former STAT 430 student)
+  + **Speaker**: Jack Banks (Performance Science Analyst, New York Yankees; former STAT 430 student) and Julia Wapner (Junior Data Scientist, Baltimore Orioles)
+  + **Lab 4** due on 04/12 at 11:59 PM
+  + **Lab 5** assigned this week, due on 04/18 at 11:59 PM 
 
 * Week 13 [04/14 - 04/18] 
   + 04/15: speaker 
