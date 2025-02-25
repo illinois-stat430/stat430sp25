@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.11.7)  25 FEB 2025 07:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.11.7)  25 FEB 2025 13:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1168,7 +1168,7 @@ LaTeX Font Info:    Font shape `T1/pcr/b/it' in size <6> not available
 Here is how much of TeX's memory you used:
  26154 strings out of 478268
  498547 string characters out of 5846347
- 811894 words of memory out of 5000000
+ 811895 words of memory out of 5000000
  43613 multiletter control sequences out of 15000+600000
  502382 words of font info for 116 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1184,7 +1184,7 @@ st/fonts/type1/urw/courier/ucrbo8a.pfb></usr/local/texlive/2022/texmf-dist/font
 s/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/
 urw/helvetic/uhvr8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/hel
 vetic/uhvro8a.pfb>
-Output written on week6_simulation.pdf (22 pages, 223597 bytes).
+Output written on week6_simulation.pdf (22 pages, 223579 bytes).
 PDF statistics:
  214 PDF objects out of 1000 (max. 8388607)
  164 compressed objects within 2 object streams

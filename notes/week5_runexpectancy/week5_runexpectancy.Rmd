@@ -53,8 +53,8 @@ and then we load in play-by-play data from the 2016 season
 
 \tiny
 ```{r, warning=FALSE, message=FALSE, cache=TRUE}
-fields = read_csv("fields.csv")
-dat2016 = read_csv("all2016.csv", 
+fields = read_csv("../../fields.csv")
+dat2016 = read_csv("../../all2016.csv", 
                     col_names = pull(fields, Header), 
                     na = character())
 ```

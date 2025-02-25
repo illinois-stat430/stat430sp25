@@ -99,8 +99,8 @@ We will do this for the 2016 season. Attention is restricted to batting plays an
 library(tidyverse)
 ```
 ```{r, message=FALSE, warning=FALSE, cache = TRUE}
-fields = read_csv("../week5_runexpectancy/fields.csv")
-dat2016 = read_csv("../week5_runexpectancy/all2016.csv", 
+fields = read_csv("../../fields.csv")
+dat2016 = read_csv("../../all2016.csv", 
                     col_names = pull(fields, Header),
                     na = character())
 ```
