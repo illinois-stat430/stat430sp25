@@ -371,15 +371,15 @@ A list of the designated University employees who, as counselors, confidential a
   + 02/27: lab
   + **Reading**: course slides
   + **Reading**: CH 9: Simulation in Analyzing Baseball Data with R 
-  + **Lab 3** assigned this week, due on 03/07 at 11:59 PM
+  + **Lab 3** assigned this week, due on 03/14 at 11:59 PM
   
 * Week 7 [03/03 - 03/07] 
-  + 03/04: lab
+  + 03/04: all-time draft
   + 03/06: lab
  
 * Week 8 [03/10 - 03/14]
   + 03/11: speaker
-  + 03/13: lecture 
+  + 03/13: lecture/lab
   + **Speaker**: Alan Nathan (Professor Emeritus of Physics, UIUC)
   + **Lab 3** due on 03/14 at 11:59 PM
 
