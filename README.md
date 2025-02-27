@@ -9,6 +9,8 @@ See the lectures directory for course notes and slides. See the labs directory f
 
 # News
 
+ -  All-time draft scheduled for Tuesday, 03/04.
+
  - The root directory now contains all Retrosheet files.
 
  - Lab3 is now posted. It is due on 03/14 at 11:59 PM.
