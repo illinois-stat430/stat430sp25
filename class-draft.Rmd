@@ -1,0 +1,40 @@
+---
+title: "All-time draft"
+output: html_document
+---
+
+```
+Rules: 
+
+1. Snake draft 
+
+2. Teams will play against each other for 8 consecutive seasons
+
+3. All players are assumed to have grown up in a common era and have all advantages/disadvantages of that era
+
+4. Injuries matter
+
+5. PED seasons do not count; a failed PED test results in a lost season
+
+6. Pretend that WWII and other wars did not happen
+
+7. Players will not be added/subtracted from rosters, a common bench of good players will be assumed
+```
+
+
+| Position | Champaign Baseball Team | Team 2 | Team 3 | Team 4 | Team 5 | Team 6 | Team 7 | 
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| C  | Mike Piazza | Ivan Rodriguez | Johnny Bench | Carlton Fisk | Josh Gibson | Buster Posey | Yogi Berra |
+| 1B | Freddie Freeman | Frank Robinson | Albert Pujols | Cap Anson | Jimmie Foxx | Stan Musial | Lou Gehrig |
+| 2B | Mookie Betts | Paul Molitor | Eddie Collins | Rogers Hornsby | Nap Lajoie | Rod Carew  | Joe Morgan |
+| 3B | Miguel Cabrera | Mike Schmidt | Eddie Mathews | Wade Boggs | George Brett | Adrian Beltre | Jose Ramirez |
+| SS | Alex Rodriguez | Ozzie Smith | Ernie Banks | Arky Vaughan | Derek Jeter | Cal Ripken Jr | Honus Wagner |
+| LF | Ken Griffey Jr | Barry Bonds | Pete Rose | Ted Williams | Rickey Henderson | Carl Yastrzemski | Tim Raines |
+| CF | Willie Mays | Roberto Clemente | Ichiro Suzuki | Joe DiMaggio | Mike Trout  | Ty Cobb | Mickey Mantle |
+| RF | Juan Soto | Hank Aaron  | Mel Ott | Tony Gwynn | Aaron Judge | Babe Ruth | Reggie Jackson |
+|    |  |  |  |  |  |  |  |
+| SP | Walter Johnson | Randy Johnson | Max Scherzer  | Pedro Martinez | Justin Verlander | Roger Clemens | Clayton Kershaw |
+| SP | Bob Gibson | Greg Maddux | Ed Walsh | Cy Young | Sandy Koufax | Tom Seaver | Bob Feller |
+| SP | Satchel Paige | Nolan Ryan | Warren Spahn | Kid Nichols | Steve Carlton | Lefty Grove | Pete "Grover" Alexander |
+| SP | Phil Niekro | Curt Schilling | Gaylord Perry | Dong Yol Sun | Christy Mathewson | Bert Blyleven | Zack Wheeler |
+| P  | Aroldis Chapman  | Tom Glavine | Mariano Rivera | Shohei Ohtani | Trevor Hoffman | Zack Greinke  | Goose Gossage |

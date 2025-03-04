@@ -9,7 +9,7 @@ See the lectures directory for course notes and slides. See the labs directory f
 
 # News
 
- -  All-time draft scheduled for Tuesday, 03/04.
+ -  All-time draft results posted! Great work to all organizations! 
 
  - The root directory now contains all Retrosheet files.
 
@@ -165,10 +165,11 @@ Attendance will be a course requirement. There will be 29 lectures and you will 
 
 #### Labs
 
-There are 5 labs total. When completing the assignment, read it carefully, and follow the directions. These labs can be completed in groups of 2-3 students. Every group member will submit their own lab report. Make sure to list your collaborators in your lab report.
+There are 5 labs total. Labs will be worth 100 points unless otherwise noted. When completing the assignment, read it carefully, and follow the directions. These labs can be completed in groups of 2-3 students. Every group member will submit their own lab report. Make sure to list your collaborators in your lab report.
 
-For each lab assignment, you will submit two files - .Rmd and .html (or .pdf) - saving your files with your name and lab assignment number. **The lab naming convention is netid_lab#**.  For a student with netid *abc123* that is submitting lab4 files, their files would be saved as *abc123_lab4.Rmd* and *abc123_lab4.html* (or *abc123_lab4.pdf*). **Failure to adopt this lab naming convention will result in point deductions and headaches.**  Make sure your lab is professional and reproducible containing only relevant derivations, code, results, and explanations. **Questions about the grading should be directed to the TA**.
+For each lab assignment, you will submit two files - .Rmd and .html (or .pdf) - saving your files with your name and lab assignment number. **The lab naming convention is netid_lab#**.  For a student with netid *abc123* that is submitting lab4 files, their files would be saved as *abc123_lab4.Rmd* and *abc123_lab4.html* (or *abc123_lab4.pdf*). **Failure to adopt this lab naming convention will result in point deductions and headaches.**  Make sure your lab is professional and reproducible containing only relevant derivations, code, results, and explanations. **Questions about the grading should be directed to the TA**. 
 
+**Students must use GitHub to start, finish, and submit their labs. More details will be discussed in class.**
 
 Labs should be stored in a lab# directory in your GitHub repo that is a sub directory of a labs directory in your GitHub repo. For example, your fourth homework assignment should be saved in the directory 
 
@@ -180,9 +181,12 @@ within your personal GitHub repo.  Failure to do this will result in point deduc
 
 **Late lab submissions will be accepted with a penalty.** There will be a 20 point deduction if a lab is submitted 48 hours after the deadline. Labs submitted later than 48 hours after the deadline will not be considered.
 
-**Students must use GitHub to start, finish, and submit their labs. More details will be discussed in class.**
 
-Labs will be worth 100 points unless otherwise noted.
+**New Compiled Output Policy**
+
+If you do not submit a compiled PDF or HTML file within three days after the deadline, 50 points will be deducted from your score. This penalty will be lifted once you submit the compiled output, but a 5-point late penalty will apply. If you do not submit the compiled file within three days, your lab will not be graded, and your score will remain a 50.
+
+This policy is separate from the late submission policy, which applies when no files have been uploaded to GitHub by the deadline.
 
 
 #### Project
