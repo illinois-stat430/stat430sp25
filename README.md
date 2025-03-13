@@ -9,7 +9,9 @@ See the lectures directory for course notes and slides. See the labs directory f
 
 # News
 
- -  All-time draft results posted! Great work to all organizations! 
+ - [Statcast data here](https://uofi.app.box.com/file/1449126291821?s=we34tcz4wqdu063zpzuwjvb4r6u9j21s)
+
+ - All-time draft results posted! Great work to all organizations! 
 
  - The root directory now contains all Retrosheet files.
 
