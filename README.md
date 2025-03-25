@@ -9,15 +9,13 @@ See the lectures directory for course notes and slides. See the labs directory f
 
 # News
 
+ - Lab4 is now posted. It is due on 04/04 at 11:59 PM.
+
  - [Statcast data here](https://uofi.app.box.com/file/1449126291821?s=we34tcz4wqdu063zpzuwjvb4r6u9j21s)
 
  - All-time draft results posted! Great work to all organizations! 
 
  - The root directory now contains all Retrosheet files.
-
- - Lab3 is now posted. It is due on 03/14 at 11:59 PM.
-
- - Simulation notes now posted.
 
  - Job opportunity with [Windy City Thunderbolts](https://www.teamworkonline.com/baseball-jobs/frontierleaguejobs/windy-city-thunderbolts/baseball-analytics-internship-2111569). 
 
@@ -395,38 +393,37 @@ A list of the designated University employees who, as counselors, confidential a
   + **Spring Break**
   
 * Week 10 [03/24 - 03/28] 
-  + 03/25: lecture/lab
+  + 03/25: lecture
   + 03/27: lab
   + **Reading**: course slides
-  + **Reading**: CH 12: Batted Ball Data from Statcast in Analyzing Baseball Data with R
-  + **Lab 4** assigned this week, due on 04/12 at 11:59 pm
+  + **Lab 4** assigned this week, due on 04/04 at 11:59 pm
 
 * Week 11 [03/31 - 04/04] 
   + 03/26: lecture 
   + 03/28: lab
   + **Reading**: course slides
-  + **Reading**: CH 12: Batted Ball Data from Statcast in Analyzing Baseball Data with R
+  + **Lab 4** due on 04/04 at 11:59 PM
+  + Project proposal assigned this week, due on 04/25 at 11:59 PM
 
 * Week 12 [04/07 - 04/11] 
-  + 04/08: speaker 
-  + 04/10:
-  + Project proposal assigned this week, due on 04/19 at 11:59 PM
-  + **Speaker**: Jack Banks (Performance Science Analyst, New York Yankees; former STAT 430 student) and Julia Wapner (Junior Data Scientist, Baltimore Orioles)
-  + **Lab 4** due on 04/12 at 11:59 PM
+  + 04/08: speaker/lecture 
+  + 04/10: lab
+  + **Reading**: course demonstration
+  + **Reading**: CH 15: Using Shiny for Baseball Applications in Analyzing Baseball Data with R 
+  + **Speaker**: Julia Wapner (Junior Data Scientist, Baltimore Orioles) and Jack Banks (Performance Science Analyst, New York Yankees; former STAT 430 student)
   + **Lab 5** assigned this week, due on 04/18 at 11:59 PM 
 
 * Week 13 [04/14 - 04/18] 
   + 04/15: speaker 
   + 04/17: lecture
   + **Speaker**: 
-  + **Reading**: Introduction to R Shiny
-  + Project proposal due on 04/18 at 11:59 PM
+  + **Lab 5** due on 04/18 at 11:59 PM
 
 * Week 14 [04/21 - 04/25]
   + 04/22: speaker
   + 04/24: lab
-  + **Lab 5** due on 04/19 at 11:59 pm
   + **Speaker**: Jim Albert (Professor Emeritus of Mathematics and Statistics, Bowling Green State University)
+  + Project proposal due on 04/25 at 11:59 PM
 
 * Week 15 [04/28 - 05/02] 
   + 04/29: lecture
