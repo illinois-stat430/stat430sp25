@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.11.7)  24 MAR 2025 12:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.11.7)  25 MAR 2025 09:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -997,13 +997,13 @@ Package microtype Info: Loading generic protrusion settings for font family
 {/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2
 
 ]
-LaTeX Font Info:    Trying to load font information for T1+pcr on input line 18
-9.
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 19
+7.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
 LaTeX Font Info:    Trying to load font information for OT1+phv on input line 1
-89.
+97.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2020/03/25 scalable font definitions for OT1/phv.
 )
@@ -1012,34 +1012,34 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
-89.
+97.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-189.
+197.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-189.
+197.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 189.
+(Font)              <10.95> on input line 197.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 189.
+(Font)              <8> on input line 197.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 189.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 189
+(Font)              <6> on input line 197.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 197
 .
 (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/local/texlive/2022/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 189
+LaTeX Font Info:    Trying to load font information for U+msb on input line 197
 .
 (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1047,11 +1047,11 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10.95> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 189.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 197.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <8> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 189.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 197.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <6> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 189.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 197.
 [3
 
 ]
@@ -1137,7 +1137,7 @@ File: week10_statcast_batters_files/figure-beamer/unnamed-chunk-9-1.pdf Graphic
  file (type pdf)
 <use week10_statcast_batters_files/figure-beamer/unnamed-chunk-9-1.pdf>
 Package pdftex.def Info: week10_statcast_batters_files/figure-beamer/unnamed-ch
-unk-9-1.pdf  used on input line 525.
+unk-9-1.pdf  used on input line 533.
 (pdftex.def)             Requested size: 307.28888pt x 215.62599pt.
 [15
 
@@ -1310,6 +1310,20 @@ File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
 (./week10_statcast_batters.vrb) [28
 
 ]
+\openout4 = `week10_statcast_batters.vrb'.
+
+(./week10_statcast_batters.vrb
+<week10_statcast_batters_files/figure-beamer/unnamed-chunk-22-1.pdf, id=239, 68
+9.57625pt x 248.93pt>
+File: week10_statcast_batters_files/figure-beamer/unnamed-chunk-22-1.pdf Graphi
+c file (type pdf)
+<use week10_statcast_batters_files/figure-beamer/unnamed-chunk-22-1.pdf>
+Package pdftex.def Info: week10_statcast_batters_files/figure-beamer/unnamed-ch
+unk-22-1.pdf  used on input line 21.
+(pdftex.def)             Requested size: 307.2866pt x 110.92732pt.
+) [29
+
+ <./week10_statcast_batters_files/figure-beamer/unnamed-chunk-22-1.pdf>]
 \tf@nav=\write6
 \openout6 = `week10_statcast_batters.nav'.
 
@@ -1321,10 +1335,10 @@ File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
 
 (./week10_statcast_batters.aux) ) 
 Here is how much of TeX's memory you used:
- 26235 strings out of 478268
- 501689 string characters out of 5846347
- 818114 words of memory out of 5000000
- 43651 multiletter control sequences out of 15000+600000
+ 26249 strings out of 478268
+ 502263 string characters out of 5846347
+ 817114 words of memory out of 5000000
+ 43659 multiletter control sequences out of 15000+600000
  504444 words of font info for 121 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,11n,122p,1020b,513s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1343,10 +1357,10 @@ rier/ucrbo8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/courier/uc
 rr8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/courier/ucrro8a.pf
 b></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr
 /local/texlive/2022/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on week10_statcast_batters.pdf (28 pages, 31295271 bytes).
+Output written on week10_statcast_batters.pdf (29 pages, 31320658 bytes).
 PDF statistics:
- 310 PDF objects out of 1000 (max. 8388607)
- 235 compressed objects within 3 object streams
- 84 named destinations out of 1000 (max. 500000)
- 30783 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 328 PDF objects out of 1000 (max. 8388607)
+ 249 compressed objects within 3 object streams
+ 87 named destinations out of 1000 (max. 500000)
+ 30788 words of extra memory for PDF output out of 35830 (max. 10000000)
 

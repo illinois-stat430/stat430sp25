@@ -19,12 +19,16 @@ header-includes:
 
 ## Background
 
+The third edition of Analyzing Baseball Data with R does not contain much content on statcast data. The content in these notes is from the second edition. These notes and corresponding lab questions are self-contained and will not make references to any editions of the textbook.
+
+\vspace{12pt}
+
 Check out [baseballsavant.mlb.com](https://baseballsavant.mlb.com/) for statcast data and statistics and visualizations constructed from statcast data.
 
 
 ## Obtaining Statcast data
 
-Can use the \texttt{scrape\_statcast\_savant} function in the \texttt{baseballr} package for up to 40000 observations.
+Can use the \texttt{statcast\_search} function in the \texttt{baseballr} package for obtaining a small subset from the statcast data set.
 
 \vspace{12pt}
 
@@ -484,4 +488,18 @@ bat_aug_m2 = bat_2021 %>%
   arrange(desc(resid))
 sqrt(mean(bat_aug_m2$resid^2))
 mean(abs(bat_aug_m2$resid))
+```
+
+
+##
+
+Below we see that the larger model fits the training data well and the smaller model does not. These plots are made using the state-of-the-art \texttt{assessor} package. [See here for more information](https://jhlee1408.github.io/assessor/articles/assessor.html).
+
+\vspace{12pt}
+\tiny
+```{r, fig.height=4}
+library(assessor)
+par(mfrow = c(1,2))
+m1.resid = resid_disc(m1, plot = TRUE)
+m2.resid = resid_disc(m2, plot = TRUE)
 ```
