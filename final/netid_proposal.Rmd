@@ -1,0 +1,108 @@
+---
+title: "Final Project Proposal"
+author: ""
+date: "Due on April 25 at 11:59 pm"
+output: pdf_document
+urlcolor: blue
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Your final project proposal is meant to ensure that you and your final project group choose a project that is rigorous, interesting, and can be completed in time. Final projects are due on 05/15 at 11:59 pm, and you are allowed and encouraged to work in groups of 2-3. Completion of this project proposal is worth 50 points. 
+
+Recall that there are 375 points allocated towards your final project. As just mentioned, this proposal is worth 50 points. There are 75 points allocated for your presentation. This presentation will be in the form of a 5-10 minute recorded presentation. The remaining 250 points is allocated to project materials and deliverables. Your presentation and your project materials are all due on or before 05/15 at 11:59 pm.
+
+**Project Rubric (or Lack Thereof)**: There is no formal rubric for your final project. This is intentional: a rigid rubric would be too limiting, as the most compelling projects come in many forms. Some may be large-scale Shiny apps rich in functionality. Others might be small but polished apps with a clever, focused idea. Still others could take the form of detailed written reports offering deep analytical insight.
+
+The only guiding principle is this: think of something interesting to create, and then create it as if it were meant to be used or read by an interested stakeholder. As Dr. Arnold O. Beckman once said:
+
+> "There is no satisfactory substitute for excellence."
+
+\newpage
+**Instructions.** Fill out this form.
+
+&nbsp;
+&nbsp;
+
+**Group members**: 
+
+&nbsp;
+&nbsp;
+
+**Project description.** Provide at least one paragraph describing what your project is about: 
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+
+**Project deliverables.** Provide at least one paragraph describing what you plan to produce: 
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+
+**Project submission.** Provide at least one paragraph describing how you plan to submit your final project materials: 
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+
+
+**R shiny layout.** Provide a sketch of the proposed layout of your Shiny app (ignore this if you are not creating a Shiny app):
+
+
+

@@ -399,8 +399,8 @@ A list of the designated University employees who, as counselors, confidential a
   + **Lab 4** assigned this week, due on 04/04 at 11:59 pm
 
 * Week 11 [03/31 - 04/04] 
-  + 03/26: lecture 
-  + 03/28: lab
+  + 04/01: lecture 
+  + 04/03: lab
   + **Reading**: course slides
   + **Lab 4** due on 04/04 at 11:59 PM
   + Project proposal assigned this week, due on 04/25 at 11:59 PM
@@ -416,7 +416,7 @@ A list of the designated University employees who, as counselors, confidential a
 * Week 13 [04/14 - 04/18] 
   + 04/15: speaker 
   + 04/17: lecture
-  + **Speaker**: 
+  + **Speaker**: David Dalpiaz (Teaching Associate Professor of Computing and Data Science, UIUC)
   + **Lab 5** due on 04/18 at 11:59 PM
 
 * Week 14 [04/21 - 04/25]
@@ -436,6 +436,6 @@ A list of the designated University employees who, as counselors, confidential a
   + 05/06: lab
   + Last day of instruction on 05/06
 
-* Final exam due on 05/15 at 11:59 PM.
+* Projects due on 05/15 at 11:59 PM.
 
 
