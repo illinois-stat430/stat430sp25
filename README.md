@@ -9,6 +9,8 @@ See the lectures directory for course notes and slides. See the labs directory f
 
 # News
 
+ - Project proposal posted in final directory. It is due on 04/25 at 11:59 PM.
+
  - Lab4 is now posted. It is due on 04/04 at 11:59 PM.
 
  - [Statcast data here](https://uofi.app.box.com/file/1449126291821?s=we34tcz4wqdu063zpzuwjvb4r6u9j21s)
