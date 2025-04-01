@@ -11,13 +11,11 @@ See the lectures directory for course notes and slides. See the labs directory f
 
  - Project proposal posted in final directory. It is due on 04/25 at 11:59 PM.
 
+ - SEAM notes posted.
+
  - Lab4 is now posted. It is due on 04/04 at 11:59 PM.
 
  - [Statcast data here](https://uofi.app.box.com/file/1449126291821?s=we34tcz4wqdu063zpzuwjvb4r6u9j21s)
-
- - All-time draft results posted! Great work to all organizations! 
-
- - The root directory now contains all Retrosheet files.
 
  - Job opportunity with [Windy City Thunderbolts](https://www.teamworkonline.com/baseball-jobs/frontierleaguejobs/windy-city-thunderbolts/baseball-analytics-internship-2111569). 
 

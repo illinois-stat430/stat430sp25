@@ -1,0 +1,320 @@
+---
+title: "SEAM method built from statcast data"
+author: "Daniel J. Eck"
+date: ""
+output: beamer_presentation 
+urlcolor: blue
+header_includes: 
+ - \usepackage{amsthm}
+ - \usepackage{amsmath}
+ - \usepackage{amsfonts}
+ - \usepackage{amscd}
+ - \usepackage{amssymb}
+ - \usepackage[sectionbib]{natbib}
+ - \usepackage{url}
+ - \usepackage{graphicx,times}
+ - \usepackage{array,rotating}
+ - \usepackage{setspace}
+ - \newcommand{\R}{\mathbb{R}}
+ - \newcommand{\Y}{\mathcal{Y}}
+ - \newcommand{\X}{\mathcal{X}}
+ - \newcommand{\Hcal}{\mathcal{H}}
+ - \newcommand{\Ybf}{\textbf{Y}}
+ - \newcommand{\Xbf}{\textbf{X}}
+ - \newcommand{\Hbf}{\textbf{H}}
+ - \newcommand{\Pbf}{\textbf{P}}
+ - \newcommand{\V}{\textbf{V}}
+ - \newcommand{\W}{\textbf{W}}
+ - \newcommand{\y}{\textbf{y}}
+ - \newcommand{\x}{\textbf{x}}
+ - \newcommand{\h}{\textbf{h}}
+ - \newcommand{\w}{\textbf{w}}
+ - \newcommand{\s}{\textbf{s}}
+ - \newcommand{\tbf}{\textbf{t}}
+ - \newcommand{\Wstar}{\W^{\textstyle{*}}}
+ - \newcommand{\wstar}{w^{\textstyle{*}}}
+ - \newcommand{\wstarsq}{w^{\textstyle{*}^2}}
+ - \newcommand{\wstarpwr}{w^{\textstyle{*}^{5/4}}}
+ - \newcommand{\lamstar}{\lambda^{\textstyle{*}}}
+---
+
+
+
+
+## Background
+
+This lecture builds on the statcast and R Shiny lectures.
+
+We will introduce a method for estimated batted-ball distributions for individual batter-pitcher matchups.
+
+Here is the application:
+\begin{center}
+\url{https://seam.stat.illinois.edu/}
+\end{center}
+
+\vspace{12pt}
+
+This is joint work with your professor and David Dalpiaz and our former students Julia Wapner and Charles Young. 
+
+Julia Wapner and Charles Young currently work for baseball teams.
+
+## Verlander vs Votto
+
+\begin{figure}[t!]
+\begin{center}
+	\includegraphics[width = 1.5in, height = 1.5in]{VerlanderVotto1.png} 
+	\includegraphics[width = 1.5in, height = 1.5in]{VerlanderVottoSEAM.png}\\
+	\includegraphics[width = 1.5in, height = 1.5in]{VerlanderVotto2.png}
+	\includegraphics[width = 1.5in, height = 1.5in]{VerlanderVotto3.png}	
+\end{center}
+\label{Fig:VerlanderVotto}
+\end{figure} 
+
+<!-- \caption{Visualization of potential batted-ball locations corresponding to the Joey Votto vs. Justin Verlander matchup according to past data (top-left), our SEAM method (top-right), Joey Votto's estimated spray chart density against all right-handed pitchers (bottom-left), and Justin Verlander's estimated spray chart allowed density against left-handed batters (bottom-right). } -->
+
+
+
+## Nonparametric estimation
+
+Review of nonparametric estimation and regression provided [here](https://scholar.harvard.edu/files/montamat/files/nonparametric_estimation.pdf).
+
+In our context we will let $\x_p$ and $\x_b$ be pitching and batting characteristics, and let $\x = (\x_p',\x_b')'$. 
+
+<!-- and $\X$ is assumed to be bounded. Denote the conditional spray chart distribution as $F(\y|\x)$ for $\x \in \X$ and $\y \in \Y$. The conditional spray chart density function corresponding to $F(\y|\x)$ will be denoted as $f(\y|\x)$ for all $\x \in \X$ and $\y \in \Y$.  -->
+
+We will let $f(\y|\x)$ be a batted-ball density function where $y$ are 2-dimensional coordinates of batted-balls.
+
+We will estimate $f(\y|\x)$ with a bivariate nonparametric Gaussian [kernel density estimator](https://en.wikipedia.org/wiki/Kernel_density_estimation)
+\[
+  \hat f_{\h}(\y|\x) =
+    \frac{1}{n h_{y_1}h_{y_2}}\sum_{i=1}^{n} 
+      \phi\left(\frac{y_1 - y_{1i}}{h_{y_1}}\right)
+      \phi\left(\frac{y_2 - y_{2i}}{h_{y_2}}\right),
+\]
+where the sample of batted-ball locations $(y_{1i},y_{2i}) \in \Y$, $i = 1, \ldots, n$ are conditioned on the characteristics of the players in the matchup.
+
+
+
+## Similarity scores 
+
+The estimator $\hat f_{\h}(\y|\x)$ is often not feasible for $f(\y|\textbf{x})$ in practice since there is not enough individual matchup data.
+
+\vspace{12pt}
+
+To address this challenge we will incorporate batted-ball data from other matchups involving either the batter or pitcher under study. 
+
+\vspace{12pt}
+
+Batted-ball locations from such matchups are weighted by their similarity to the players in the matchup under study. 
+
+\vspace{12pt}
+
+Similarity will be assessed via [similarity scores](https://en.wikipedia.org/wiki/Similarity_score).
+
+
+
+## Similarity scores
+
+We will suppose that the pitcher in the matchup under study throws $n_{\text{type}}$ different types of pitches. 
+
+\vspace{12pt}
+
+We will let $\x_{p,t}$ be the pitcher covariates for pitch type $t = 1,\ldots,n_{\text{type}}$. 
+
+\vspace{12pt}
+
+Similarly, let $\x_{b,t}$ be the batter covariates when facing pitch type $t = 1,\ldots,n_{\text{type}}$.
+
+
+##
+
+The similarity scores between two pitchers for pitch type $t$ will be of the [Mahalanobis distance](https://en.wikipedia.org/wiki/Mahalanobis_distance) between covariate vectors, ie
+$$
+  s(\x_{p,j_1,t}, \x_{p,j_2,t}) = \exp(-\|\x_{p,j_1,t}-\x_{p,j_2,t}\|_{\V_{p,t}}),
+$$ 
+where 
+<!-- $\x_{p,j_1,t}$ and $\x_{p,j_2,t}$ are, respectively, the underlying pitch characteristics for pitcher $j_1$ and $j_2$, -->
+$$
+   \|\x_{p,j_1,t}-\x_{p,j_2,t}\|_{\V_{p,t}}
+     = \left((\x_{p,j_1,t}-\x_{p,j_2,t})'\V_{p,t}(\x_{p,j_1,t}-\x_{p,j_2,t})\right)^{1/d_p},
+$$
+and $d_p$ is the dimension of $\x_{p,j_1,t}$ and $\V_{p,t}$ is a diagonal weight matrix.
+
+
+## Pitch-level density
+
+Let $\rho_t$ is the proportion of time that a ball in play yielded by the pitcher in the matchup under study corresponds to pitch type $t$. 
+
+We will let 
+$$
+  f(y|\x) = \sum_t \rho_t f(y|\x_t),
+$$
+where $\x_t = (\x_{p,t}', \x_{b,t}')'$.
+
+
+## SEAM density estimator 
+
+For pitcher $j = 1,...,J$ and pitch-type $t$, we define weights as
+$$
+  w_{p,j,t} = \frac{s_{p,j,t}}{\sum_{l=1}^{J}s_{p,l,t}}.
+$$
+
+For pitch type $t$, the spray chart density for a batter facing the synthetic pitcher is
+\begin{equation} \label{synth-pitch-t}
+  f_{\text{sp}, t}(\y|\x_{b,t}) = \sum_{j=1}^J w_{p,j,t}f(\y|\x_{p,j,t},\x_{b,t}).
+\end{equation}
+The spray chart density for a batter facing the synthetic pitcher is then
+\begin{equation} \label{synth-pitch}
+  f_{\text{sp}}(\y|\x) = \sum_{t=1}^{n_{\text{type}}} \rho_t f_{\text{sp},t}(\y|\x_{b,t}).
+\end{equation}
+
+
+## 
+
+We then estimate \eqref{synth-pitch-t} with
+\begin{equation} \label{synth-est-t}
+  \hat f_{\text{sp},t}(\y|\x_{b,t}) 
+    = \sum_{j=1}^J w_{p,j,t}\hat f_{\h_{p,j,t}}(\y|\x_{p,j,t},\x_{b,t}), 
+\end{equation}
+where $\h_{p,j,t}$ is a bandwidth parameter. 
+
+\vspace{12pt}
+
+We estimate the densities in \eqref{synth-pitch} with
+\begin{equation} \label{synth-est}
+  \hat f_{\text{sp}}(\y|\x) =  \sum_{t=1}^{n_{\text{type}}} \rho_t \hat f_{\text{sp}, t}(\y|\x_{b,t}).
+\end{equation}
+
+\vspace{12pt}
+
+The synthetic batter density $\hat f_{\text{sb}}(\y|\x)$ will be estimated similarly.
+
+
+## 
+
+Our implementation will estimate $f(\y|\x)$ with
+\begin{equation} \label{sd-implem}
+  \hat{f}_{\text{SEAM}}(\y|\x) = \lambda \hat{f}_{\h}(\y|\x) + \lambda_p \hat{f}_{\text{sp}}(\y|\x) + \lambda_b \hat{f}_{\text{sb}}(\y|\x),
+\end{equation}
+where
+$$
+  \lambda + \lambda_b + \lambda_p = 1.
+$$
+
+<!-- $$ -->
+<!--    \hat{f}_{\text{SEAM}}(\y|\x) = \lambda \hat{f}_{\h}(\y|\x) + \lambda_p \hat{f}_{\text{sp}}(\y|\x) + \lambda_b \hat{f}_{\text{sb}}(\y|\x). -->
+<!-- $$ -->
+
+Values of $(\lambda,\lambda_b,\lambda_p)$ are chosen to balance the natural bias that exists in our synthetic player construction and the inherent estimation variation.
+
+
+##
+
+Our implementation will estimate $\lambda$, $\lambda_p$, and $\lambda_b$ as
+\begin{align*}
+  \lambda &= \frac{\sqrt{n}}{\sqrt{n} + \sqrt{n_p} + \sqrt{n_b}}, \\
+  \lambda_p &= \frac{\sqrt{n_p}}{\sqrt{n} + \sqrt{n_p} + \sqrt{n_b}}, \\
+  \lambda_b &= \frac{\sqrt{n_b}}{\sqrt{n} + \sqrt{n_p} + \sqrt{n_b}},
+\end{align*}
+where 
+\begin{align*}
+  n_p &= \sum_t\rho_t\sum_{j=1}^J s_{p,j,t}^2n_{p,j,t}, \\
+  n_b &= \sum_t\rho_t\sum_{k=1}^K s_{b,k,t}^2n_{b,k,t},
+\end{align*}
+and $n_{b,k,t}$ and $n_{b,k,t}$ denote matchup sample sizes.
+
+
+## Considerations
+
+Batter characteristics include: 
+
+ - exit velocity (launch speed)
+ - launch angle 
+ - pull\%, middle\%, oppo\%
+
+Pitcher characteristics include: 
+
+ - velocity 
+ - spin rate movement 
+ - release angles 
+ - release point
+
+Our defaults favor stuff (velocity and spin rate movement) and launch conditions over release information and batted-ball locations.
+
+
+
+## Pre-processing
+
+\footnotesize
+\begin{itemize}
+    \item Pitches classified as Eephus, Knuckleball, and Screwball are removed since these pitch types are rare.
+    \item Pitches classified as Knuckle-Curve are renamed to Curveball.
+    \item Pitches classified as Forkball are renamed to Splitter.
+    \item Pitch launch angles are calculated using rudimentary kinematics:
+        \begin{itemize}
+            \item $launch_h = \arctan(\frac{vx_r}{vy_r})$
+            \item $launch_v = \arctan\left(\frac{vz_r}{\sqrt{vx_r^2 + vy_r^2}}\right)$
+        \end{itemize}
+        where $vx_r$, $vy_r$, $vz_r$ are, respectively, the $x$, $y$, $z$ components of release velocity.
+    \item Batted ball locations are adjusted to make home plate the origin $(0,0)$.
+    \item Spray angle  is calculated from the $x$ and $y$ coordinates of the batted ball locations (what we previously called $y_1$ and $y_2$).
+    \item Data was limited to regular season batter-pitcher matchups. 
+    \item Sacrifice hits and sacrifice flies are removed from consideration.
+\end{itemize}
+
+Pitchers and batters are aggregated on a season, handedness, and pitch type basis.
+
+
+## Validation 
+
+\begin{center}
+Why go through all this?
+\end{center}
+
+
+## 
+
+\footnotesize
+\begin{table}
+\begin{center}
+\begin{tabular}{l|rrr ||rrr }
+  & \multicolumn{3}{c||}{Marginal coverage} & \multicolumn{3}{|c}{Conditional coverage success rate} \\
+  \hline
+level  & 0.5 & 0.75 & 0.9 & 0.5 & 0.75 & 0.90 \\
+\hline
+SEAM & 0.559 & 0.811 & 0.953 & 0.579 (0.035) & 0.641 (0.034) & 0.779 (0.030) \\
+batter & 0.547 & 0.793 & 0.938 & 0.513 (0.036) & 0.574 (0.035) & 0.662 (0.034) \\
+pitcher & 0.541 & 0.788 & 0.935 & 0.549 (0.036) & 0.595 (0.035) & 0.713 (0.032) \\
+\end{tabular}		
+\end{center}
+\caption{Marginal and conditional coverage properties for SEAM, the empirical batter spray distribution, and the empirical pitcher spray distribution (standard errors in parentheses). The conditional coverage success rate is the proportion of individual batter-pitcher conditional coverages that is at or above the nominal level. }
+\label{Tab:coverage}
+\end{table}
+
+
+## 
+
+\begin{figure}[t!]
+\begin{center}
+\includegraphics[width=0.70\textwidth]{coverage_size.pdf}	
+\end{center}	
+\caption{\footnotesize Average conditional coverage of fixed-size confidence regions for SEAM, the empirical batter spray distribution, and the empirical pitcher spray distribution. The fixed-size regions are constructed from the $n_g$ most probable grids according to each method. }
+\label{Fig:fixed-size}
+\end{figure}
+
+
+## 
+
+There were 129937 baseballs put into play in 2021. 
+
+Thus, an increase in coverage by 1\% roughly corresponds to an increase of fielding 40 outs per team, and a difference of 40 outs corresponds to about one and half baseball games. 
+
+It is reasonable to expect that any baseball team that implements our SEAM method instead of using batter or pitcher specific spray charts could win an additional game over the course of the season. 
+
+MLB organizations have [repeatedly demonstrated](https://blogs.fangraphs.com/what-are-teams-paying-per-war-in-free-agency/) a willingness to spend millions of dollars to obtain a comparable advantage via free agency. 
+
+An additional win could be all that is needed to have a chance at [competing for a championship](https://www.youtube.com/watch?v=46QITnnPINY&ab_channel=SecretBase).
+
+
+
+
