@@ -28,7 +28,7 @@ There is a script called \texttt{create\_sc\_bip\_small.R} in the **stat430sp25*
 
 (c) List the pitchers with the ten highest average exit velocities allowed on batted balls.
 
-(d) Plot the distribution of exit velocities allowed across pitchers. Does exit velocity allowed vary significantly across batters? Explain your reasoning.
+(d) Plot the distribution of exit velocities allowed across pitchers. Does exit velocity allowed vary significantly across pitchers? Explain your reasoning.
 
 (e) Compute the correlation for exit velocity for batters between the first and second half of the season you chose.
 
