@@ -408,8 +408,8 @@ A list of the designated University employees who, as counselors, confidential a
   + Project proposal assigned this week, due on 04/25 at 11:59 PM
 
 * Week 12 [04/07 - 04/11] 
-  + 04/08: speaker/lecture 
-  + 04/10: lab
+  + 04/08: speaker
+  + 04/10: lecture
   + **Reading**: course demonstration
   + **Reading**: CH 15: Using Shiny for Baseball Applications in Analyzing Baseball Data with R 
   + **Speaker**: Julia Wapner (Junior Data Scientist, Baltimore Orioles) and Jack Banks (Performance Science Analyst, New York Yankees; former STAT 430 student)
@@ -417,7 +417,7 @@ A list of the designated University employees who, as counselors, confidential a
 
 * Week 13 [04/14 - 04/18] 
   + 04/15: speaker 
-  + 04/17: lecture
+  + 04/17: lab
   + **Speaker**: David Dalpiaz (Teaching Associate Professor of Computing and Data Science, UIUC)
   + **Lab 5** due on 04/18 at 11:59 PM
 
