@@ -24,7 +24,7 @@ See the lectures directory for course notes and slides. See the labs directory f
  - Job opportunity with [Windy City Thunderbolts](https://www.teamworkonline.com/baseball-jobs/frontierleaguejobs/windy-city-thunderbolts/baseball-analytics-internship-2111569). 
 
 
-## STAT 385 Shiny resources
+## Shiny Resources from STAT 385 
 
  - Refer to STAT 385 [weekly materials on Shiny](https://fa24.stat385.org/week-15.html) and the [final project guidelines](https://fa24.stat385.org/project.html) for additional resources and good practices.
 
