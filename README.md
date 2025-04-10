@@ -24,9 +24,13 @@ See the lectures directory for course notes and slides. See the labs directory f
  - Job opportunity with [Windy City Thunderbolts](https://www.teamworkonline.com/baseball-jobs/frontierleaguejobs/windy-city-thunderbolts/baseball-analytics-internship-2111569). 
 
 
-## Shiny Resources from STAT 385 
+## Shiny Resources
 
- - Refer to STAT 385 [weekly materials on Shiny](https://fa24.stat385.org/week-15.html) and the [final project guidelines](https://fa24.stat385.org/project.html) for additional resources and good practices.
+ - Use the [Shiny for R Cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/shiny.pdf) for a reference of widely used R shiny features and some quick tips and tricks.
+
+ - Refer to STAT 385 [weekly materials on Shiny](https://fa24.stat385.org/week-15.html) and the [final project guidelines](https://fa24.stat385.org/project.html) for additional good practices and in-depth resources, including lectures.
+
+
 
 ## Good Habits
 
