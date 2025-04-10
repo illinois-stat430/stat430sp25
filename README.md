@@ -9,6 +9,8 @@ See the lectures directory for course notes and slides. See the labs directory f
 
 # News
 
+ - Jack Banks's [website](https://jackbanks.web.illinois.edu/)
+
  - Lab5 is now posted. It is due on 04/18 at 11:59 PM.
 
  - Short notes on shiny now posted. Also read [Chapter 15](https://beanumber.github.io/abdwr3e/15-shiny.html) in Analyzing Baseball Data with R. It is a short chapter with additional references.
@@ -22,22 +24,25 @@ See the lectures directory for course notes and slides. See the labs directory f
  - Job opportunity with [Windy City Thunderbolts](https://www.teamworkonline.com/baseball-jobs/frontierleaguejobs/windy-city-thunderbolts/baseball-analytics-internship-2111569). 
 
 
+## STAT 385 Shiny resources
+
+ - Refer to STAT 385 [weekly materials on Shiny](https://fa24.stat385.org/week-15.html) and the [final project guidelines](https://fa24.stat385.org/project.html) for additional resources and good practices.
 
 ## Good Habits
 
- - obtain files from my **stat430sp25** repo before class starts
- - use your computer's terminal, it is less user-friendly but it is MUCH faster
+ - Obtain files from my **stat430sp25** repo before class starts
+ - Use your computer's terminal, it is less user-friendly but it is MUCH faster
  - Stay centered and remember Hofstadter's Law, which describes the widely experienced difficulty of accurately estimating the time it will take to complete tasks of substantial complexity. **Hofstadter's Law**: It always takes longer than you expect, even when you take into account Hofstadter's Law.
  
 
 ## Lab Hints
 
- - can work on labs in small groups of 2-3
- - get a jump start on the labs, do not wait until the last minute
- - use caching when appropriate
- - make sure that your lab report compiles when you complete a problem or stop working for the day
- - push often
- - do not jeopardize the entire lab over one problem
+ - Can work on labs in small groups of 2-3
+ - Get a jump start on the labs, do not wait until the last minute
+ - Use caching when appropriate
+ - Make sure that your lab report compiles when you complete a problem or stop working for the day
+ - Push often
+ - Do not jeopardize the entire lab over one problem
 
 
 # Course Syllabus
