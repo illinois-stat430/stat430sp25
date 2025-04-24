@@ -15,7 +15,7 @@ See the lectures directory for course notes and slides. See the labs directory f
 
  - Short notes on shiny now posted. Also read [Chapter 15](https://beanumber.github.io/abdwr3e/15-shiny.html) in Analyzing Baseball Data with R. It is a short chapter with additional references.
 
- - [Statcast data here](https://uofi.app.box.com/file/1449126291821?s=we34tcz4wqdu063zpzuwjvb4r6u9j21s)
+ - [Statcast data here](https://uofi.app.box.com/file/1449126291821?s=we34tcz4wqdu063zpzuwjvb4r6u9j21s).
 
  - Job opportunity with [Windy City Thunderbolts](https://www.teamworkonline.com/baseball-jobs/frontierleaguejobs/windy-city-thunderbolts/baseball-analytics-internship-2111569). 
 
