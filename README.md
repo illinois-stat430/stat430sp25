@@ -9,15 +9,11 @@ See the lectures directory for course notes and slides. See the labs directory f
 
 # News
 
- - Jack Banks's [website](https://jackbanks.web.illinois.edu/)
-
- - Lab5 is now posted. It is due on 04/18 at 11:59 PM.
-
- - Short notes on shiny now posted. Also read [Chapter 15](https://beanumber.github.io/abdwr3e/15-shiny.html) in Analyzing Baseball Data with R. It is a short chapter with additional references.
-
  - Project proposal posted in final directory. It is due on 04/25 at 11:59 PM.
 
- - SEAM notes posted.
+ - Jack Banks's [website](https://jackbanks.web.illinois.edu/).
+
+ - Short notes on shiny now posted. Also read [Chapter 15](https://beanumber.github.io/abdwr3e/15-shiny.html) in Analyzing Baseball Data with R. It is a short chapter with additional references.
 
  - [Statcast data here](https://uofi.app.box.com/file/1449126291821?s=we34tcz4wqdu063zpzuwjvb4r6u9j21s)
 
