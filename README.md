@@ -9,6 +9,14 @@ See the lectures directory for course notes and slides. See the labs directory f
 
 # News
 
+ - New vignette available: *Primer for Full House Modeling* (published in the Lahman R package).  
+  To install the latest version of the Lahman package with vignettes and view it, run:
+
+  ```r
+  devtools::install_github("cdalzell/Lahman", build_vignettes = TRUE)
+  vignette("FHM-primer", package = "Lahman")
+  ```
+
  - Project proposal posted in final directory. It is due on 04/25 at 11:59 PM.
 
  - Jack Banks's [website](https://jackbanks.web.illinois.edu/).
