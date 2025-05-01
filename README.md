@@ -9,6 +9,8 @@ See the lectures directory for course notes and slides. See the labs directory f
 
 # News
 
+ - Era-adjusted baseball stats and additional resources can be viewed at [this website](https://eckeraadjustment.web.illinois.edu/). Full access to these statistics can be obtained from the [fullhouse R package](https://github.com/DEck13/fullhouse).
+
  - New vignette available: *Primer for Full House Modeling* (published in the Lahman R package).  
   To install the latest version of the Lahman package with vignettes and view it, run:
 
